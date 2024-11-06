@@ -1,26 +1,25 @@
-/* Monitor de Ritmo Cardíaco */
 .heartbeat-monitor {
-    position: fixed; /* Permanece fijo en la pantalla */
-    top: 20px; /* Distancia desde la parte superior */
-    right: 20px; /* Distancia desde el lado derecho */
-    background-color: rgba(17, 17, 17, 0.9); /* Fondo semi-transparente para evitar superposición visual */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(17, 17, 17, 0.9);
     padding: 15px;
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 8px;
     text-align: center;
-    width: 250px; /* Ajuste del ancho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    color: yellow; /* Color azul para el texto */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para dar un efecto de elevación */
+    width: 250px;
+    z-index: 1000;
+    color: #d32f2f;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .heartbeat-monitor h2 {
-    color: yellow; /* Color azul para el título, similar al color del GIF */
+    color: #d32f2f;
     margin-bottom: 10px;
 }
 
 .heartbeat-gif {
     width: 100%;
-    max-width: 220px; /* Limita el tamaño máximo para que no ocupe tanto espacio */
+    max-width: 220px;
     height: auto;
     margin: 10px 0;
 }

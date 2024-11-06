@@ -1,10 +1,25 @@
 .islapage, .criaderopage, .enfermeriapage {
-    padding: 20px;
+    padding: 44px;
+    color: #fff;
+    background-color: #0d0d0d;
 }
 
 .islapage h1, .criaderopage h1, .enfermeriapage h1 {
     text-align: center;
+    color: #f0c040;
     margin-bottom: 30px;
+}
+
+.islapage p, .criaderopage p, .enfermeriapage p {
+    color: #f0c040;
+}
+
+.islapage h2, .criaderopage h2, .enfermeriapage h2 {
+    color: #f0c040;
+}
+
+.islapage ul, .criaderopage ul, .enfermeriapage ul {
+    color: #f0c040;
 }
 
 .islapage table, .criaderopage table, .enfermeriapage table {
@@ -13,12 +28,17 @@
 }
 
 .islapage td, .criaderopage td, .enfermeriapage td {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ccc;
+    width: 40px; /* Ajuste del tamaño para que la imagen se vea correctamente */
+    height: 36px;
+    border: 1px solid #333;
     text-align: center;
+    background-size: cover; /* Ajuste para la imagen */
+    background-position: center;
 }
 
 .islapage td.occupied, .criaderopage td.occupied, .enfermeriapage td.occupied {
-    background-color: #f0c040;
+    background-image: url("https://cdn-icons-png.flaticon.com/512/2614/2614727.png"); /* Ruta a la imagen del dinosaurio */
+    background-size: contain; /* Ajuste para contener la imagen en el cuadro */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-color: transparent; /* Asegura que el fondo no interfiera */
 }
