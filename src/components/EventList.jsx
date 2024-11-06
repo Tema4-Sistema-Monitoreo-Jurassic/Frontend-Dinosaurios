@@ -1,6 +1,6 @@
 // src/components/EventList.jsx
 import React from 'react';
-import '../styles/styles.css';
+import '../styles/Event.css';
 
 function EventList({ eventos }) {
     return (

@@ -1,5 +1,6 @@
 .adminpage {
     padding: 20px;
+    position: relative; /* Necesario para posicionar el monitor dentro de la página */
 }
 
 .adminpage h1 {
