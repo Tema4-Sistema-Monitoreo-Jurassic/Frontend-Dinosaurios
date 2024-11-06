@@ -1,10 +1,11 @@
 // src/components/UserPage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/UserPage.css';
 
 function UserPage() {
     return (
-        <div>
+        <div className="userpage">
             <h1>Página de Usuario</h1>
             <p>Seleccione una isla o criadero para visualizar:</p>
             <ul>

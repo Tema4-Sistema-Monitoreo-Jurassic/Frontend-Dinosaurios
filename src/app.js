@@ -1,6 +1,8 @@
+// src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Homepage from './components/Homepage';
 import UserPage from './components/UserPage';
 import AdminPage from './components/AdminPage';
@@ -13,15 +15,16 @@ function App() {
     return (
         <Router>
             <Navbar />
-            <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/user" element={<UserPage />} />
-                <Route path="/admin" element={<AdminPage />} />
-                <Route path="/paleontologist" element={<PaleontologistPage />} />
-                <Route path="/isla/:id" element={<IslaPage />} />
-                <Route path="/criadero/:id" element={<CriaderoPage />} />
-                <Route path="/enfermeria" element={<EnfermeriaPage />} />
-            </Routes>
+            <Switch>
+                <Route exact path="/" component={Homepage} />
+                <Route path="/user" component={UserPage} />
+                <Route path="/admin" component={AdminPage} />
+                <Route path="/paleontologist" component={PaleontologistPage} />
+                <Route path="/isla/:id" component={IslaPage} />
+                <Route path="/criadero/:id" component={CriaderoPage} />
+                <Route path="/enfermeria" component={EnfermeriaPage} />
+            </Switch>
+            <Footer />
         </Router>
     );
 }

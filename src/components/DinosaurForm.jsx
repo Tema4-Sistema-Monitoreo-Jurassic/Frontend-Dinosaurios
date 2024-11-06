@@ -1,6 +1,7 @@
 // src/components/DinosaurForm.jsx
 import React, { useState } from 'react';
 import { createDinosaur } from '../services/api';
+import '../styles/styles.css';
 
 function DinosaurForm() {
     const [nombre, setNombre] = useState('');
@@ -13,11 +14,12 @@ function DinosaurForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const dinosaurio = {
-            id: null, // El backend asignará un ID
+            id: null,
             nombre: nombre,
-            edad: 0, // Edad inicial
+            edad: 0,
+            tipo: tipo,
             habitat: habitat,
-            sensores: [], // Se pueden agregar sensores si es necesario
+            sensores: [],
             posicion: {
                 x: positionX,
                 y: positionY,
@@ -25,10 +27,16 @@ function DinosaurForm() {
             },
             islaId: islaId,
         };
-        createDinosaur(tipo, dinosaurio)
+        createDinosaur(dinosaurio)
             .then(response => {
                 alert('Dinosaurio creado exitosamente');
-                // Limpiar el formulario si se desea
+                // Limpiar el formulario
+                setNombre('');
+                setTipo('carnivoro');
+                setHabitat('terrestre');
+                setIslaId('');
+                setPositionX(0);
+                setPositionY(0);
             })
             .catch(error => {
                 console.error('Error al crear el dinosaurio:', error);
@@ -37,7 +45,7 @@ function DinosaurForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="dino-form" onSubmit={handleSubmit}>
             <div>
                 <label>Nombre:</label>
                 <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required />

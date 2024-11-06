@@ -1,0 +1,24 @@
+.islapage, .criaderopage, .enfermeriapage {
+    padding: 20px;
+}
+
+.islapage h1, .criaderopage h1, .enfermeriapage h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.islapage table, .criaderopage table, .enfermeriapage table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.islapage td, .criaderopage td, .enfermeriapage td {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.islapage td.occupied, .criaderopage td.occupied, .enfermeriapage td.occupied {
+    background-color: #f0c040;
+}

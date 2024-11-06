@@ -1,0 +1,44 @@
+.adminpage {
+    padding: 20px;
+}
+
+.adminpage h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dino-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.dino-form div {
+    margin-bottom: 15px;
+}
+
+.dino-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.dino-form input, .dino-form select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.dino-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #2d2d2d;
+    color: #f0c040;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dino-form button:hover {
+    background-color: #444;
+}

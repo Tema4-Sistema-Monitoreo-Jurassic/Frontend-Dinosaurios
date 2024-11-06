@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { getIsla } from '../services/api';
 import { useParams } from 'react-router-dom';
+import '../styles/Isla.css';
 
 function CriaderoPage() {
     const { id } = useParams();
@@ -22,7 +23,7 @@ function CriaderoPage() {
     }
 
     return (
-        <div>
+        <div className="criaderopage">
             <h1>{criadero.nombre}</h1>
             <p>Capacidad Máxima: {criadero.capacidadMaxima}</p>
             <h2>Dinosaurios:</h2>
@@ -37,7 +38,7 @@ function CriaderoPage() {
                 {criadero.tablero && criadero.tablero.map((fila, indexFila) => (
                     <tr key={indexFila}>
                         {fila.map((celda, indexCelda) => (
-                            <td key={indexCelda}>{celda}</td>
+                            <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
                         ))}
                     </tr>
                 ))}

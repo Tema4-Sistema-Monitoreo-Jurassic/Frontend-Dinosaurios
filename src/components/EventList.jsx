@@ -1,15 +1,18 @@
 // src/components/EventList.jsx
 import React from 'react';
+import '../styles/styles.css';
 
 function EventList({ eventos }) {
     return (
-        <ul>
-            {eventos.map(evento => (
-                <li key={evento.id}>
-                    {evento.mensaje} - Valor: {evento.valor}
-                </li>
-            ))}
-        </ul>
+        <div className="event-list">
+            <ul>
+                {eventos.map(evento => (
+                    <li key={evento.id}>
+                        {evento.mensaje} - Valor: {evento.valor}
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 }
 

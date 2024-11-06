@@ -1,0 +1,45 @@
+.heartbeat-monitor {
+    margin: 50px auto;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.heartbeat-monitor h2 {
+    margin-bottom: 20px;
+}
+
+.heartbeat-line {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.heartbeat-line::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 49%, #f00 50%, transparent 51%);
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: translateX(-50%);
+    }
+    25% {
+        transform: translateX(-25%);
+    }
+    50% {
+        transform: translateX(0%);
+    }
+    75% {
+        transform: translateX(-25%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}

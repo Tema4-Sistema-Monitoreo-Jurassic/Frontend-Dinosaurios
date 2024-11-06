@@ -1,6 +1,7 @@
 // src/components/EnfermeriaPage.jsx
 import React, { useEffect, useState } from 'react';
 import { getIsla } from '../services/api';
+import '../styles/Isla.css';
 
 function EnfermeriaPage() {
     const [enfermeria, setEnfermeria] = useState(null);
@@ -21,7 +22,7 @@ function EnfermeriaPage() {
     }
 
     return (
-        <div>
+        <div className="enfermeriapage">
             <h1>{enfermeria.nombre}</h1>
             <p>Capacidad Máxima: {enfermeria.capacidadMaxima}</p>
             <h2>Dinosaurios en Enfermería:</h2>
@@ -36,7 +37,7 @@ function EnfermeriaPage() {
                 {enfermeria.tablero && enfermeria.tablero.map((fila, indexFila) => (
                     <tr key={indexFila}>
                         {fila.map((celda, indexCelda) => (
-                            <td key={indexCelda}>{celda}</td>
+                            <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
                         ))}
                     </tr>
                 ))}

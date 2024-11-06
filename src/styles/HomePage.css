@@ -1,0 +1,19 @@
+.homepage {
+    text-align: center;
+    padding: 50px;
+    background-image: url("https://m.media-amazon.com/images/I/614SRa6c1UL._AC_UF894,1000_QL80_.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.homepage h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #000;
+}
+
+.homepage p {
+    font-size: 24px;
+    text-shadow: 1px 1px #000;
+}

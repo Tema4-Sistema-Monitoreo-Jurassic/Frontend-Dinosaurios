@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { getIsla } from '../services/api';
 import { useParams } from 'react-router-dom';
+import '../styles/Isla.css';
 
 function IslaPage() {
     const { id } = useParams();
@@ -22,7 +23,7 @@ function IslaPage() {
     }
 
     return (
-        <div>
+        <div className="islapage">
             <h1>{isla.nombre}</h1>
             <p>Capacidad Máxima: {isla.capacidadMaxima}</p>
             <h2>Dinosaurios:</h2>
@@ -37,7 +38,7 @@ function IslaPage() {
                 {isla.tablero && isla.tablero.map((fila, indexFila) => (
                     <tr key={indexFila}>
                         {fila.map((celda, indexCelda) => (
-                            <td key={indexCelda}>{celda}</td>
+                            <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
                         ))}
                     </tr>
                 ))}
