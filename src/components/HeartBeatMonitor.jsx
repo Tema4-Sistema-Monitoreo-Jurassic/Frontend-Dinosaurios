@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/HeartBeatMonitor.css';
 
-function HeartbeatMonitor() {
+function HeartBeatMonitor() {
     const [heartbeat, setHeartbeat] = useState(80); // Valor inicial
 
     useEffect(() => {
@@ -24,4 +24,4 @@ function HeartbeatMonitor() {
     );
 }
 
-export default HeartbeatMonitor;
+export default HeartBeatMonitor;

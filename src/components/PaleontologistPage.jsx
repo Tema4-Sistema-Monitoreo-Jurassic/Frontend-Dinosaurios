@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { getEvents } from '../services/api';
 import EventList from './EventList';
-import HeartbeatMonitor from './HeartbeatMonitor';
 import '../styles/PalentologistPage.css';
+import HeartBeatMonitor from "./HeartBeatMonitor";
 
 function PaleontologistPage() {
     const [eventos, setEventos] = useState([]);
@@ -21,7 +21,7 @@ function PaleontologistPage() {
     return (
         <div className="paleopage">
             <h1>Página del Paleontólogo</h1>
-            <HeartbeatMonitor />
+            <HeartBeatMonitor />
             <h2>Eventos Generados</h2>
             <EventList eventos={eventos} />
         </div>
