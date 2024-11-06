@@ -6,6 +6,9 @@ import '../styles/UserPage.css';
 function UserPage() {
     return (
         <div className="userpage">
+            <div className="banner-container">
+                <img src="/images/j.png" alt="Jurassic Park Banner" className="banner" />
+            </div>
             <h1>Página de Usuario</h1>
             <p>Seleccione una isla o criadero para visualizar:</p>
             <ul>

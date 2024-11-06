@@ -1,19 +1,31 @@
+/* src/styles/HomePage.css */
 .homepage {
     text-align: center;
-    padding: 50px;
-    background-image: url("https://m.media-amazon.com/images/I/614SRa6c1UL._AC_UF894,1000_QL80_.jpg");
-    background-size: cover;
-    background-position: center;
-    color: #fff;
+    padding: 62px;
+    background-color: #0d0d0d; /* Fondo oscuro igual al de la imagen */
+    font-family: 'Verdana', sans-serif;
 }
 
 .homepage h1 {
     font-size: 48px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px #000;
+    color: #f0c040;
+    text-shadow: 3px 3px #000;
+    transition: color 0.3s;
 }
+
+.homepage h1:hover {
+    color: #d32f2f; /* Rojo del marco de la imagen en hover */
+}
+
 
 .homepage p {
     font-size: 24px;
-    text-shadow: 1px 1px #000;
+    color: #d32f2f;
+    text-shadow: 2px 2px #000;
+    transition: color 0.3s;
+}
+
+.homepage p:hover {
+    color: #f0c040; /* Rojo en hover */
 }
