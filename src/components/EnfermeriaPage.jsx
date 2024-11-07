@@ -23,26 +23,30 @@ function EnfermeriaPage() {
 
     return (
         <div className="enfermeriapage">
-            <h1>{enfermeria.nombre}</h1>
-            <p>Capacidad Máxima: {enfermeria.capacidadMaxima}</p>
-            <h2>Dinosaurios en Enfermería:</h2>
-            <ul>
-                {enfermeria.dinosaurios && enfermeria.dinosaurios.map(dino => (
-                    <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>
-                ))}
-            </ul>
-            <h2>Tablero:</h2>
-            <table>
-                <tbody>
-                {enfermeria.tablero && enfermeria.tablero.map((fila, indexFila) => (
-                    <tr key={indexFila}>
-                        {fila.map((celda, indexCelda) => (
-                            <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
-                        ))}
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <div className="text-content">
+                <h1>{enfermeria.nombre}</h1>
+                <p>Capacidad Máxima: {enfermeria.capacidadMaxima}</p>
+                <h2>Dinosaurios en Enfermería:</h2>
+                <ul>
+                    {enfermeria.dinosaurios && enfermeria.dinosaurios.map(dino => (
+                        <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>
+                    ))}
+                </ul>
+            </div>
+            <div className="table-container">
+                <h2>Tablero:</h2>
+                <table>
+                    <tbody>
+                    {enfermeria.tablero && enfermeria.tablero.map((fila, indexFila) => (
+                        <tr key={indexFila}>
+                            {fila.map((celda, indexCelda) => (
+                                <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
+                            ))}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

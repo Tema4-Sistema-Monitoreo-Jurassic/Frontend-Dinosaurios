@@ -1,44 +1,89 @@
+/* General styling for all pages */
 .islapage, .criaderopage, .enfermeriapage {
-    padding: 44px;
-    color: #fff;
-    background-color: #0d0d0d;
-}
-
-.islapage h1, .criaderopage h1, .enfermeriapage h1 {
-    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px; /* Space between text and board */
+    padding: 0px;
     color: #f0c040;
-    margin-bottom: 30px;
+    background-image: url("/public/images/eee.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
 }
 
-.islapage p, .criaderopage p, .enfermeriapage p {
-    color: #f0c040;
+/* Styling for text content section */
+.text-content {
+    width: 200px; /* Adjust as needed */
+    text-align: left; /* Align text to the left */
 }
 
-.islapage h2, .criaderopage h2, .enfermeriapage h2 {
-    color: #f0c040;
+/* Table container adjustments to bring it higher */
+.table-container {
+    transform: translateY(-30px); /* Moves the table container up */
 }
 
-.islapage ul, .criaderopage ul, .enfermeriapage ul {
-    color: #f0c040;
-}
-
+/* Table styling */
 .islapage table, .criaderopage table, .enfermeriapage table {
-    margin: 0 auto;
+    margin: 0;
     border-collapse: collapse;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid #f0c040;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
+/* Table cell styling */
 .islapage td, .criaderopage td, .enfermeriapage td {
-    width: 40px; /* Ajuste del tamaño para que la imagen se vea correctamente */
+    width: 40px;
     height: 36px;
     border: 1px solid #333;
-    text-align: center;
-    background-size: cover; /* Ajuste para la imagen */
+    background-size: cover;
     background-position: center;
+    transition: transform 0.3s;
+}
+
+.islapage td:hover, .criaderopage td:hover, .enfermeriapage td:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px #f0c040;
+}
+
+.text-content {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 220px; /* Adjust width as needed */
+    color: #f0c040;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+    z-index: 10; /* Ensures it stays on top of other elements */
+}
+
+/* Title and list styling */
+.text-content h1 {
+    font-size: 24px;
+    margin: 0 0 10px;
+}
+
+.text-content p, .text-content h2, .text-content ul {
+    margin: 0 0 10px;
+    font-size: 16px;
 }
 
 .islapage td.occupied, .criaderopage td.occupied, .enfermeriapage td.occupied {
-    background-image: url("https://cdn-icons-png.flaticon.com/512/2614/2614727.png"); /* Ruta a la imagen del dinosaurio */
-    background-size: contain; /* Ajuste para contener la imagen en el cuadro */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: transparent; /* Asegura que el fondo no interfiera */
+    background-image: url("/public/images/dinosaur-icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
 }

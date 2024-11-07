@@ -17,7 +17,7 @@ function HeartbeatMonitor() {
     return (
         <div className="heartbeat-monitor">
             <h2>Monitor de Ritmo Cardíaco</h2>
-            <img src="/images/heartbeat.gif" alt="Heartbeat Animation" className="heartbeat-gif" />
+            <img src="/images/heartbeat.gif" alt="Heartbeat Animation" className="heartbeat-gif"/>
             <p>Ritmo Cardíaco Actual: {heartbeat} BPM</p>
         </div>
     );

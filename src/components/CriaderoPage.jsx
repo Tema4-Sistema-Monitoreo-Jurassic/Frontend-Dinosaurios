@@ -24,26 +24,30 @@ function CriaderoPage() {
 
     return (
         <div className="criaderopage">
-            <h1>{criadero.nombre}</h1>
-            <p>Capacidad Máxima: {criadero.capacidadMaxima}</p>
-            <h2>Dinosaurios:</h2>
-            <ul>
-                {criadero.dinosaurios && criadero.dinosaurios.map(dino => (
-                    <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>
-                ))}
-            </ul>
-            <h2>Tablero:</h2>
-            <table>
-                <tbody>
-                {criadero.tablero && criadero.tablero.map((fila, indexFila) => (
-                    <tr key={indexFila}>
-                        {fila.map((celda, indexCelda) => (
-                            <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
-                        ))}
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <div className="text-content">
+                <h1>{criadero.nombre}</h1>
+                <p>Capacidad Máxima: {criadero.capacidadMaxima}</p>
+                <h2>Dinosaurios:</h2>
+                <ul>
+                    {criadero.dinosaurios && criadero.dinosaurios.map(dino => (
+                        <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>
+                    ))}
+                </ul>
+            </div>
+            <div className="table-container">
+                <h2>Tablero:</h2>
+                <table>
+                    <tbody>
+                    {criadero.tablero && criadero.tablero.map((fila, indexFila) => (
+                        <tr key={indexFila}>
+                            {fila.map((celda, indexCelda) => (
+                                <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
+                            ))}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
