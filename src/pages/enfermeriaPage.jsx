@@ -1,35 +1,34 @@
-// src/components/CriaderoPage.jsx
+// src/components/enfermeriaPage.jsx
 import React, { useEffect, useState } from 'react';
-import { getIsla } from '../services/api';
-import { useParams } from 'react-router-dom';
-import '../styles/Isla.css';
+import { getIsla } from '../services/apiService';
+import '../styles/isla.css';
 
-function CriaderoPage() {
-    const { id } = useParams();
-    const [criadero, setCriadero] = useState(null);
+function EnfermeriaPage() {
+    const [enfermeria, setEnfermeria] = useState(null);
 
     useEffect(() => {
-        getIsla(id)
+        const enfermeriaId = '3'; // ID de la enfermería
+        getIsla(enfermeriaId)
             .then(response => {
-                setCriadero(response.data);
+                setEnfermeria(response.data);
             })
             .catch(error => {
-                console.error('Error al obtener el criadero:', error);
+                console.error('Error al obtener la enfermería:', error);
             });
-    }, [id]);
+    }, []);
 
-    if (!criadero) {
+    if (!enfermeria) {
         return <div>Cargando...</div>;
     }
 
     return (
-        <div className="criaderopage">
+        <div className="enfermeriapage">
             <div className="text-content">
-                <h1>{criadero.nombre}</h1>
-                <p>Capacidad Máxima: {criadero.capacidadMaxima}</p>
-                <h2>Dinosaurios:</h2>
+                <h1>{enfermeria.nombre}</h1>
+                <p>Capacidad Máxima: {enfermeria.capacidadMaxima}</p>
+                <h2>Dinosaurios en Enfermería:</h2>
                 <ul>
-                    {criadero.dinosaurios && criadero.dinosaurios.map(dino => (
+                    {enfermeria.dinosaurios && enfermeria.dinosaurios.map(dino => (
                         <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>
                     ))}
                 </ul>
@@ -38,7 +37,7 @@ function CriaderoPage() {
                 <h2>Tablero:</h2>
                 <table>
                     <tbody>
-                    {criadero.tablero && criadero.tablero.map((fila, indexFila) => (
+                    {enfermeria.tablero && enfermeria.tablero.map((fila, indexFila) => (
                         <tr key={indexFila}>
                             {fila.map((celda, indexCelda) => (
                                 <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
@@ -52,4 +51,4 @@ function CriaderoPage() {
     );
 }
 
-export default CriaderoPage;
+export default EnfermeriaPage;

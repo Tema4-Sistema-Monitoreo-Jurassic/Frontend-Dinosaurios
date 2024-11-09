@@ -1,35 +1,35 @@
-// src/components/IslaPage.jsx
+// src/components/criaderoPage.jsx
 import React, { useEffect, useState } from 'react';
-import { getIsla } from '../services/api';
+import { getIsla } from '../services/apiService';
 import { useParams } from 'react-router-dom';
-import '../styles/Isla.css';
+import '../styles/isla.css';
 
-function IslaPage() {
+function CriaderoPage() {
     const { id } = useParams();
-    const [isla, setIsla] = useState(null);
+    const [criadero, setCriadero] = useState(null);
 
     useEffect(() => {
         getIsla(id)
             .then(response => {
-                setIsla(response.data);
+                setCriadero(response.data);
             })
             .catch(error => {
-                console.error('Error al obtener la isla:', error);
+                console.error('Error al obtener el criadero:', error);
             });
     }, [id]);
 
-    if (!isla) {
+    if (!criadero) {
         return <div>Cargando...</div>;
     }
 
     return (
-        <div className="islapage">
+        <div className="criaderopage">
             <div className="text-content">
-                <h1>{isla.nombre}</h1>
-                <p>Capacidad Máxima: {isla.capacidadMaxima}</p>
+                <h1>{criadero.nombre}</h1>
+                <p>Capacidad Máxima: {criadero.capacidadMaxima}</p>
                 <h2>Dinosaurios:</h2>
                 <ul>
-                    {isla.dinosaurios && isla.dinosaurios.map(dino => (
+                    {criadero.dinosaurios && criadero.dinosaurios.map(dino => (
                         <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>
                     ))}
                 </ul>
@@ -38,7 +38,7 @@ function IslaPage() {
                 <h2>Tablero:</h2>
                 <table>
                     <tbody>
-                    {isla.tablero && isla.tablero.map((fila, indexFila) => (
+                    {criadero.tablero && criadero.tablero.map((fila, indexFila) => (
                         <tr key={indexFila}>
                             {fila.map((celda, indexCelda) => (
                                 <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
@@ -52,4 +52,4 @@ function IslaPage() {
     );
 }
 
-export default IslaPage;
+export default CriaderoPage;

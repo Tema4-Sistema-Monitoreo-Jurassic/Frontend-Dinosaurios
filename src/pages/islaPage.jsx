@@ -1,34 +1,35 @@
-// src/components/EnfermeriaPage.jsx
+// src/components/islaPage.jsx
 import React, { useEffect, useState } from 'react';
-import { getIsla } from '../services/api';
-import '../styles/Isla.css';
+import { getIsla } from '../services/apiService';
+import { useParams } from 'react-router-dom';
+import '../styles/isla.css';
 
-function EnfermeriaPage() {
-    const [enfermeria, setEnfermeria] = useState(null);
+function IslaPage() {
+    const { id } = useParams();
+    const [isla, setIsla] = useState(null);
 
     useEffect(() => {
-        const enfermeriaId = '3'; // ID de la enfermería
-        getIsla(enfermeriaId)
+        getIsla(id)
             .then(response => {
-                setEnfermeria(response.data);
+                setIsla(response.data);
             })
             .catch(error => {
-                console.error('Error al obtener la enfermería:', error);
+                console.error('Error al obtener la isla:', error);
             });
-    }, []);
+    }, [id]);
 
-    if (!enfermeria) {
+    if (!isla) {
         return <div>Cargando...</div>;
     }
 
     return (
-        <div className="enfermeriapage">
+        <div className="islapage">
             <div className="text-content">
-                <h1>{enfermeria.nombre}</h1>
-                <p>Capacidad Máxima: {enfermeria.capacidadMaxima}</p>
-                <h2>Dinosaurios en Enfermería:</h2>
+                <h1>{isla.nombre}</h1>
+                <p>Capacidad Máxima: {isla.capacidadMaxima}</p>
+                <h2>Dinosaurios:</h2>
                 <ul>
-                    {enfermeria.dinosaurios && enfermeria.dinosaurios.map(dino => (
+                    {isla.dinosaurios && isla.dinosaurios.map(dino => (
                         <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>
                     ))}
                 </ul>
@@ -37,7 +38,7 @@ function EnfermeriaPage() {
                 <h2>Tablero:</h2>
                 <table>
                     <tbody>
-                    {enfermeria.tablero && enfermeria.tablero.map((fila, indexFila) => (
+                    {isla.tablero && isla.tablero.map((fila, indexFila) => (
                         <tr key={indexFila}>
                             {fila.map((celda, indexCelda) => (
                                 <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
@@ -51,4 +52,4 @@ function EnfermeriaPage() {
     );
 }
 
-export default EnfermeriaPage;
+export default IslaPage;

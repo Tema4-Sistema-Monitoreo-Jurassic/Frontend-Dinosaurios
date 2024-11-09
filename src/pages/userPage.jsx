@@ -1,7 +1,7 @@
-// src/components/UserPage.jsx
+// src/components/userPage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/UserPage.css';
+import '../styles/userPage.css';
 
 function UserPage() {
     return (

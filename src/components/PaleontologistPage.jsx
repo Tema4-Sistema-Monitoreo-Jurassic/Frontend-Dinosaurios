@@ -1,9 +1,9 @@
 // src/components/PaleontologistPage.jsx
 import React, { useEffect, useState } from 'react';
-import { getEvents } from '../services/api';
+import { getEvents } from '../services/apiService';
 import EventList from './EventList';
-import '../styles/PalentologistPage.css';
-import '../styles/HeartBeatMonitor.css';
+import '../styles/palentologistPage.css';
+import '../styles/heartBeatMonitor.css';
 import HeartbeatMonitor from './HeartbeatMonitor';
 
 function PaleontologistPage() {

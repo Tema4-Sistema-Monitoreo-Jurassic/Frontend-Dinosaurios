@@ -1,6 +1,6 @@
 // src/components/HeartbeatMonitor.jsx
 import React, { useState, useEffect } from 'react';
-import '../styles/HeartBeatMonitor.css';
+import '../styles/heartBeatMonitor.css';
 
 function HeartbeatMonitor() {
     const [heartbeat, setHeartbeat] = useState(80); // Valor inicial

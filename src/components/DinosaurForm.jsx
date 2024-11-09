@@ -1,6 +1,6 @@
 // src/components/DinosaurForm.jsx
 import React, { useState } from 'react';
-import { createDinosaur } from '../services/api';
+import { createDinosaur } from '../services/apiService';
 import '../styles/styles.css';
 
 function DinosaurForm() {

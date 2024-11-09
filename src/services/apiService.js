@@ -1,4 +1,4 @@
-// src/services/api.js
+// src/services/apiService.js
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080'; // Cambia el puerto si es necesario
