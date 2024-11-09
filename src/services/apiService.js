@@ -17,8 +17,9 @@ export const loginUser = async (credentials) => {
     }
 };
 
-export const createUser = (userData) => {
-    return axios.post(`${API_BASE_URL}/usuarios`, userData);
+// Cambiar createUser para utilizar el endpoint de registro
+export const registerUser = (registerData) => {
+    return axios.post(`${API_BASE_URL}/api/auth/register`, registerData);
 };
 
 export const getEvents = () => {
