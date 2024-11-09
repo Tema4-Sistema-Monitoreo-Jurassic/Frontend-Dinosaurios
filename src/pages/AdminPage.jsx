@@ -1,6 +1,6 @@
 // src/components/AdminPage.jsx
 import React from 'react';
-import DinosaurForm from './DinosaurForm';
+import DinosaurForm from '../components/DinosaurForm';
 import '../styles/AdminPage.css';
 import '../styles/styles.css';
 

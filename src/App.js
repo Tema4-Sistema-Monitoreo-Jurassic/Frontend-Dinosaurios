@@ -2,13 +2,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Homepage from './components/Homepage';
-import UserPage from './components/UserPage';
-import AdminPage from './components/AdminPage';
+import Homepage from './pages/Homepage';
+import UserPage from './pages/UserPage';
+import AdminPage from './pages/AdminPage';
 import PaleontologistPage from './components/PaleontologistPage';
-import IslaPage from './components/IslaPage';
-import CriaderoPage from './components/CriaderoPage';
-import EnfermeriaPage from './components/EnfermeriaPage';
+import IslaPage from './pages/IslaPage';
+import CriaderoPage from './pages/CriaderoPage';
+import EnfermeriaPage from './pages/EnfermeriaPage';
 
 function App() {
     return (
