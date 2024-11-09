@@ -1,10 +1,10 @@
-// src/components/PaleontologistPage.jsx
+// src/components/paleontologistPage.jsx
 import React, { useEffect, useState } from 'react';
 import { getEvents } from '../services/apiService';
-import EventList from './EventList';
+import EventList from '../components/EventList';
 import '../styles/palentologistPage.css';
 import '../styles/heartBeatMonitor.css';
-import HeartbeatMonitor from './HeartbeatMonitor';
+import HeartbeatMonitor from '../components/HeartBeatMonitor';
 
 function PaleontologistPage() {
     const [eventos, setEventos] = useState([]);

@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Homepage from './pages/homepage';
 import UserPage from './pages/userPage';
 import AdminPage from './pages/adminPage';
-import PaleontologistPage from './components/PaleontologistPage';
+import PaleontologistPage from './pages/paleontologistPage';
 import IslaPage from './pages/islaPage';
 import CriaderoPage from './pages/criaderoPage';
 import EnfermeriaPage from './pages/enfermeriaPage';

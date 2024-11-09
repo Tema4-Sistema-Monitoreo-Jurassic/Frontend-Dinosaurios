@@ -7,6 +7,20 @@ export const createDinosaur = (dinosaurio) => {
     return axios.post(`${API_BASE_URL}/dinosaurios`, dinosaurio);
 };
 
+export const loginUser = async (credentials) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/auth/login`, credentials);
+        return response.data;
+    } catch (error) {
+        console.error('Error en el login:', error);
+        throw error;
+    }
+};
+
+export const createUser = (userData) => {
+    return axios.post(`${API_BASE_URL}/usuarios`, userData);
+};
+
 export const getEvents = () => {
     return axios.get(`${API_BASE_URL}/eventos`);
 };
