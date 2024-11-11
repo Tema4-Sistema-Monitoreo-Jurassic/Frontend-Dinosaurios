@@ -1,22 +1,29 @@
-// src/components/paleontologistPage.jsx
+// src/pages/PaleontologistPage.jsx
 import React, { useEffect, useState } from 'react';
 import { getEvents } from '../services/apiService';
 import EventList from '../components/EventList';
 import '../styles/palentologistPage.css';
 import '../styles/heartBeatMonitor.css';
-import HeartbeatMonitor from '../components/HeartBeatMonitor';
+import HeartbeatMonitor from '../components/HeartbeatMonitor';
 
 function PaleontologistPage() {
     const [eventos, setEventos] = useState([]);
 
     useEffect(() => {
-        getEvents()
-            .then(response => {
-                setEventos(response.data);
-            })
-            .catch(error => {
-                console.error('Error al obtener los eventos:', error);
-            });
+        const fetchEvents = () => {
+            getEvents()
+                .then(response => {
+                    setEventos(response.data);
+                })
+                .catch(error => {
+                    console.error('Error al obtener los eventos:', error);
+                });
+        };
+
+        fetchEvents();
+        const intervalId = setInterval(fetchEvents, 1000); // Actualiza cada segundo
+
+        return () => clearInterval(intervalId);
     }, []);
 
     return (

@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { registerUser } from '../services/apiService';
 import '../styles/adminPage.css';
-import '../styles/styles.css';
 
 function AdminPage() {
     const [nombre, setNombre] = useState('');
@@ -12,7 +11,7 @@ function AdminPage() {
     const [telefono, setTelefono] = useState('');
     const [direccion, setDireccion] = useState('');
     const [password, setPassword] = useState('');
-    const [rolNombre, setRolNombre] = useState('user'); // Valor por defecto para rol
+    const [rolNombre, setRolNombre] = useState('user');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,7 +20,7 @@ function AdminPage() {
             apellido1,
             apellido2,
             correo,
-            telefono: parseInt(telefono), // Convertir a número
+            telefono: parseInt(telefono),
             direccion,
             password,
             rolNombre
@@ -30,7 +29,6 @@ function AdminPage() {
         registerUser(registerData)
             .then(() => {
                 alert('Usuario registrado exitosamente');
-                // Limpiar formulario después de enviar
                 setNombre('');
                 setApellido1('');
                 setApellido2('');

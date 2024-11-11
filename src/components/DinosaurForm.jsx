@@ -1,6 +1,7 @@
 // src/components/DinosaurForm.jsx
-import React, { useState } from 'react';
-import { createDinosaur } from '../services/apiService';
+import React, { useState, useContext } from 'react';
+import { createDinosaur } from '../services/api';
+import { AuthContext } from '../context/AuthContext';
 import '../styles/styles.css';
 
 function DinosaurForm() {
@@ -10,6 +11,7 @@ function DinosaurForm() {
     const [islaId, setIslaId] = useState('');
     const [positionX, setPositionX] = useState(0);
     const [positionY, setPositionY] = useState(0);
+    const { authData } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +29,7 @@ function DinosaurForm() {
             },
             islaId: islaId,
         };
-        createDinosaur(dinosaurio)
+        createDinosaur(dinosaurio, authData.token)
             .then(response => {
                 alert('Dinosaurio creado exitosamente');
                 // Limpiar el formulario
@@ -44,7 +46,10 @@ function DinosaurForm() {
             });
     };
 
-    return (
+
+
+
+return (
         <form className="dino-form" onSubmit={handleSubmit}>
             <div>
                 <label>Nombre:</label>

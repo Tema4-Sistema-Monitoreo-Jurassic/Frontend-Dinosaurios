@@ -7,9 +7,10 @@ export const createDinosaur = (dinosaurio) => {
     return axios.post(`${API_BASE_URL}/dinosaurios`, dinosaurio);
 };
 
-export const loginUser = async (credentials) => {
+
+export const loginUser = async (loginRequest) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/api/auth/login`, credentials);
+        const response = await axios.post(`${API_BASE_URL}/api/auth/login`, loginRequest);
         return response.data;
     } catch (error) {
         console.error('Error en el login:', error);
@@ -17,10 +18,12 @@ export const loginUser = async (credentials) => {
     }
 };
 
-// Cambiar createUser para utilizar el endpoint de registro
 export const registerUser = (registerData) => {
     return axios.post(`${API_BASE_URL}/api/auth/register`, registerData);
 };
+
+// Otros métodos si es necesario...
+
 
 export const getEvents = () => {
     return axios.get(`${API_BASE_URL}/eventos`);
