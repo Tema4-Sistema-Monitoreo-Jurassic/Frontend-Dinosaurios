@@ -1,30 +1,54 @@
-// src/components/paleontologistPage.jsx
 import React, { useEffect, useState } from 'react';
-import { getEvents } from '../services/apiService';
-import EventList from '../components/EventList';
-import '../styles/palentologistPage.css';
-import '../styles/heartBeatMonitor.css';
-import HeartbeatMonitor from '../components/HeartBeatMonitor';
+import { getDinosauriosConDatos } from '../services/apiService';
 
 function PaleontologistPage() {
-    const [eventos, setEventos] = useState([]);
+    const [dinosaurios, setDinosaurios] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getEvents()
+        getDinosauriosConDatos()
             .then(response => {
-                setEventos(response.data);
+                setDinosaurios(response.data);
+                setLoading(false);
             })
             .catch(error => {
-                console.error('Error al obtener los eventos:', error);
+                console.error('Error al obtener dinosaurios con datos:', error);
+                setLoading(false);
             });
     }, []);
 
+    if (loading) {
+        return <div>Cargando dinosaurios...</div>;
+    }
+
+    if (dinosaurios.length === 0) {
+        return <div>No hay dinosaurios con datos disponibles en este momento.</div>;
+    }
+
     return (
-        <div className="paleopage">
-            <h1>Página del Paleontólogo</h1>
-            <h2>Eventos Generados</h2>
-            <HeartbeatMonitor />
-            <EventList eventos={eventos} />
+        <div className="dinosaurios-con-datos">
+            {dinosaurios.map(dino => (
+                <div key={dino.id} className="dinosaurio">
+                    <h2>{dino.nombre}</h2>
+                    <div>
+                        <h3>Sensores:</h3>
+                        {dino.sensores.length > 0 ? (
+                            dino.sensores.map((sensor, index) => (
+                                <div key={index} className="sensor">
+                                    <h4>{sensor.tipo}</h4>
+                                    <ul>
+                                        {sensor.datos.slice(-3).map((dato, idx) => (
+                                            <li key={idx}>{`Valor: ${dato.valor}`}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No hay datos disponibles para este dinosaurio.</p>
+                        )}
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }
