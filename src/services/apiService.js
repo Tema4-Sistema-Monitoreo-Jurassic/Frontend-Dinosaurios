@@ -11,12 +11,13 @@ export const createDinosaur = (dinosaurio) => {
 export const loginUser = async (loginRequest) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/api/auth/login`, loginRequest);
-        return response.data;
+        return response.data; // Asegúrate de que response.data contiene el token y el role
     } catch (error) {
         console.error('Error en el login:', error);
         throw error;
     }
 };
+
 
 export const registerUser = (registerData) => {
     return axios.post(`${API_BASE_URL}/api/auth/register`, registerData);

@@ -1,4 +1,3 @@
-// src/components/userPage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/userPage.css';
@@ -19,6 +18,7 @@ function UserPage() {
                 <li><Link to="/criadero/6">Criadero Voladores</Link></li>
                 <li><Link to="/enfermeria">Enfermería</Link></li>
             </ul>
+            <p>Componente cargado correctamente</p>
         </div>
     );
 }

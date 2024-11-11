@@ -1,5 +1,5 @@
-// LoginPage.jsx
-import React, { useContext, useState } from 'react';
+// src/pages/LoginPage.jsx
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/apiService';
@@ -8,48 +8,50 @@ import '../styles/login.css';
 function LoginPage() {
     const [nombreOrCorreo, setNombreOrCorreo] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useContext(AuthContext);
+    const { authData, login } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const loginRequest = {
-            nombreOrCorreo,
-            password,
-        };
+        const loginRequest = { nombreOrCorreo, password };
 
-        loginUser(loginRequest)
-            .then(response => {
-                if (response.token) {
-                    login({
-                        token: response.token,
-                        role: response.role,
-                    });
+        try {
+            const response = await loginUser(loginRequest);
 
-                    switch (response.role) {
-                        case 'ADMINISTRADOR':
-                            navigate('/admin');
-                            break;
-                        case 'PALEONTOLOGO':
-                            navigate('/paleontologist');
-                            break;
-                        case 'USUARIO':
-                            navigate('/user');
-                            break;
-                        default:
-                            navigate('/');
-                            break;
-                    }
-                } else {
-                    alert('Error en la autenticación');
-                }
-            })
-            .catch(error => {
-                console.error('Error al iniciar sesión:', error);
-                alert('Credenciales incorrectas');
-            });
+            if (response.token && response.role) {
+                login({
+                    token: response.token,
+                    role: response.role,
+                });
+            } else {
+                alert('Error en la autenticación: token o rol no recibidos.');
+            }
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
+            alert('Credenciales incorrectas');
+        }
     };
+
+    // Redirigir después de que `authData` se actualice y se autentique correctamente
+    useEffect(() => {
+        if (authData.isAuthenticated) {
+            switch (authData.role) {
+                case "ADMINISTRADOR":
+                    navigate("/admin");
+                    break;
+                case "PALEONTOLOGO":
+                    navigate("/paleontologist");
+                    break;
+                case "USUARIO":
+                    navigate("/user");
+                    break;
+                default:
+                    navigate("/");
+                    break;
+            }
+        }
+    }, [authData, navigate]);
 
     return (
         <div className="login-page">
@@ -77,6 +79,8 @@ function LoginPage() {
             </form>
         </div>
     );
+
+
 }
 
 export default LoginPage;
