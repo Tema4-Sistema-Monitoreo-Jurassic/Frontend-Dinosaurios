@@ -1,3 +1,4 @@
+// src/context/AuthContext.js
 import React, { createContext, useState } from 'react';
 
 export const AuthContext = createContext();
@@ -8,16 +9,14 @@ export function AuthProvider({ children }) {
         token: null,
         role: null,
     });
-    const [loading, setLoading] = useState(false);
 
     const login = (data) => {
-        setLoading(true); // Empezamos a cargar
         setAuthData({
             isAuthenticated: true,
             token: data.token,
             role: data.role,
         });
-        setLoading(false); // Terminamos de cargar
+        console.log("AuthData actualizado:", { isAuthenticated: true, token: data.token, role: data.role });
     };
 
     const logout = () => {
@@ -29,7 +28,7 @@ export function AuthProvider({ children }) {
     };
 
     return (
-        <AuthContext.Provider value={{ authData, login, logout, loading }}>
+        <AuthContext.Provider value={{ authData, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

@@ -1,57 +1,71 @@
-import React, { useContext } from 'react';
+// src/App.js
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
-import LoginPage from './pages/loginPage';
-import UserPage from './pages/userPage';
-import AdminPage from './pages/adminPage';
-import PaleontologistPage from './pages/paleontologistPage';
-import IslaPage from './pages/islaPage';
-import CriaderoPage from './pages/criaderoPage';
-import EnfermeriaPage from './pages/enfermeriaPage';
+import LoginPage from './pages/LoginPage';
+import UserPage from './pages/UserPage';
+import AdminPage from './pages/AdminPage';
+import PaleontologistPage from './pages/PaleontologistPage';
 import Footer from './components/Footer';
 
 function App() {
     const { authData } = useContext(AuthContext);
 
+    // Log para verificar el estado de autenticación en cada renderizado
+    useEffect(() => {
+        console.log("Estado de authData:", authData);
+    }, [authData]);
+
     return (
         <Router>
             <Routes>
-                {/* Página de inicio o redirección según autenticación */}
+                {/* Redirige a la página de inicio de sesión o, si está autenticado, a la ruta actual */}
                 <Route
                     path="/"
                     element={
                         authData.isAuthenticated ? (
-                            <Navigate to={`/${authData.role.toLowerCase()}`} replace />
+                            <Navigate to="/user" replace /> // Puedes ajustar esta ruta si quieres una ruta específica de inicio al autenticarse
                         ) : (
                             <LoginPage />
                         )
                     }
                 />
-                {/* Rutas privadas según el rol */}
-                <Route path="/user" element={<PrivateRoute element={<UserPage />} roles={['USUARIO']} />} />
-                <Route path="/admin" element={<PrivateRoute element={<AdminPage />} roles={['ADMINISTRADOR']} />} />
-                <Route path="/paleontologist" element={<PrivateRoute element={<PaleontologistPage />} roles={['PALEONTOLOGO']} />} />
-                <Route path="/isla/:id" element={<PrivateRoute element={<IslaPage />} roles={['USUARIO', 'ADMINISTRADOR', 'PALEONTOLOGO']} />} />
-                <Route path="/criadero/:id" element={<PrivateRoute element={<CriaderoPage />} roles={['USUARIO', 'ADMINISTRADOR', 'PALEONTOLOGO']} />} />
-                <Route path="/enfermeria" element={<PrivateRoute element={<EnfermeriaPage />} roles={['USUARIO', 'ADMINISTRADOR', 'PALEONTOLOGO']} />} />
+
+                {/* Rutas autenticadas sin comprobación de roles */}
+                <Route
+                    path="/user"
+                    element={
+                        authData.isAuthenticated ? (
+                            <UserPage />
+                        ) : (
+                            <Navigate to="/" replace />
+                        )
+                    }
+                />
+                <Route
+                    path="/admin"
+                    element={
+                        authData.isAuthenticated ? (
+                            <AdminPage />
+                        ) : (
+                            <Navigate to="/" replace />
+                        )
+                    }
+                />
+                <Route
+                    path="/paleontologist"
+                    element={
+                        authData.isAuthenticated ? (
+                            <PaleontologistPage />
+                        ) : (
+                            <Navigate to="/" replace />
+                        )
+                    }
+                />
             </Routes>
             {authData.isAuthenticated && <Footer />}
         </Router>
     );
-}
-
-function PrivateRoute({ element, roles }) {
-    const { authData } = useContext(AuthContext);
-
-    if (!authData.isAuthenticated) {
-        return <Navigate to="/" replace />;
-    }
-
-    if (!roles.includes(authData.role)) {
-        return <Navigate to="/" replace />;
-    }
-
-    return element;
 }
 
 export default App;

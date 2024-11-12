@@ -13,19 +13,15 @@ function LoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const loginRequest = { nombreOrCorreo, password };
 
         try {
             const response = await loginUser(loginRequest);
 
             if (response.token && response.role) {
-                login({
-                    token: response.token,
-                    role: response.role,
-                });
+                login({ token: response.token, role: response.role });
             } else {
-                alert('Error en la autenticación: token o rol no recibidos.');
+                alert('Error en la autenticación');
             }
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
@@ -33,17 +29,16 @@ function LoginPage() {
         }
     };
 
-    // Redirigir después de que `authData` se actualice y se autentique correctamente
     useEffect(() => {
         if (authData.isAuthenticated) {
             switch (authData.role) {
-                case "ADMINISTRADOR":
+                case 'ADMINISTRADOR':
                     navigate("/admin");
                     break;
-                case "PALEONTOLOGO":
+                case 'PALEONTOLOGO':
                     navigate("/paleontologist");
                     break;
-                case "USUARIO":
+                case 'USUARIO':
                     navigate("/user");
                     break;
                 default:
@@ -79,8 +74,6 @@ function LoginPage() {
             </form>
         </div>
     );
-
-
 }
 
 export default LoginPage;

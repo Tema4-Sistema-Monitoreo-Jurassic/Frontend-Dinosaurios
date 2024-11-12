@@ -1,8 +1,13 @@
-import React from 'react';
+// src/pages/UserPage.jsx
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import '../styles/userPage.css';
 
 function UserPage() {
+    const { authData } = useContext(AuthContext);
+    console.log("Auth Data en UserPage:", authData);
+
     return (
         <div className="userpage">
             <div className="banner-container">
