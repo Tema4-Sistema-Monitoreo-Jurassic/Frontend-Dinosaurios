@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getDinosauriosConDatos } from '../services/apiService';
-import '../styles/spinner.css'; // Make sure to create and style this CSS file
+import HeartbeatMonitor from '../components/HeartbeatMonitor';
+import '../styles/spinner.css';
 
 function PaleontologistPage() {
     const [dinosaurios, setDinosaurios] = useState([]);
@@ -20,12 +21,12 @@ function PaleontologistPage() {
                 });
         };
 
-        fetchData(); // Cargar los datos inicialmente
+        fetchData();
         const intervalId = setInterval(() => {
             window.location.reload();
-        }, 7000); // Recargar cada 7 segundos
+        }, 25000);
 
-        return () => clearInterval(intervalId); // Limpiar el intervalo cuando se desmonte
+        return () => clearInterval(intervalId);
     }, []);
 
     if (loading) {
@@ -42,18 +43,21 @@ function PaleontologistPage() {
     }
 
     return (
-        <div className="tabla-container">
+        <div className="page-container">
             <style>{`
-                .tabla-container {
+                .page-container {
                     display: flex;
-                    justify-content: center;
-                    padding: 20px;
-                    background-color: #0d0d0d;
                     min-height: 100vh;
+                    background-color: #0d0d0d;
+                }
+                .tabla-container {
+                    flex: 3;
+                    padding-left: 0;
+                    display: flex;
                     align-items: center;
                 }
                 .tabla-dinosaurios {
-                    width: 80%;
+                    width: 100%;
                     border-collapse: collapse;
                     font-family: 'Verdana', sans-serif;
                     color: #fff;
@@ -82,6 +86,12 @@ function PaleontologistPage() {
                     border-radius: 4px;
                     border: 1px solid #444;
                 }
+                .heartbeat-monitor-container {
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
                 .loading {
                     color: #fff;
                     text-align: center;
@@ -107,40 +117,45 @@ function PaleontologistPage() {
                     100% { transform: rotate(360deg); }
                 }
             `}</style>
-            <table className="tabla-dinosaurios">
-                <thead>
-                <tr>
-                    <th>Tipo de Dinosaurio</th>
-                    <th>Tipo de Sensor</th>
-                    <th>Últimos Datos</th>
-                </tr>
-                </thead>
-                <tbody>
-                {dinosaurios.map(dino => (
-                    <React.Fragment key={dino.id}>
-                        <tr>
-                            <td rowSpan={dino.sensores.length}>{dino.nombre}</td>
-                            <td>{dino.sensores[0].tipo}</td>
-                            <td>
-                                {dino.sensores[0].datos.slice(-3).map((dato, idx) => (
-                                    <div key={idx}>Valor: {dato.valor}</div>
-                                ))}
-                            </td>
-                        </tr>
-                        {dino.sensores.slice(1).map((sensor, index) => (
-                            <tr key={index}>
-                                <td>{sensor.tipo}</td>
+            <div className="tabla-container">
+                <table className="tabla-dinosaurios">
+                    <thead>
+                    <tr>
+                        <th>Tipo de Dinosaurio</th>
+                        <th>Tipo de Sensor</th>
+                        <th>Últimos Datos</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {dinosaurios.map(dino => (
+                        <React.Fragment key={dino.id}>
+                            <tr>
+                                <td rowSpan={dino.sensores.length}>{dino.nombre}</td>
+                                <td>{dino.sensores[0].tipo}</td>
                                 <td>
-                                    {sensor.datos.slice(-3).map((dato, idx) => (
+                                    {dino.sensores[0].datos.slice(-3).map((dato, idx) => (
                                         <div key={idx}>Valor: {dato.valor}</div>
                                     ))}
                                 </td>
                             </tr>
-                        ))}
-                    </React.Fragment>
-                ))}
-                </tbody>
-            </table>
+                            {dino.sensores.slice(1).map((sensor, index) => (
+                                <tr key={index}>
+                                    <td>{sensor.tipo}</td>
+                                    <td>
+                                        {sensor.datos.slice(-3).map((dato, idx) => (
+                                            <div key={idx}>Valor: {dato.valor}</div>
+                                        ))}
+                                    </td>
+                                </tr>
+                            ))}
+                        </React.Fragment>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="heartbeat-monitor-container">
+                <HeartbeatMonitor />
+            </div>
         </div>
     );
 }
