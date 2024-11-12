@@ -27,9 +27,9 @@ Explotando la dinámica y la utilización transversal de los servicios necesario
 
 La aplicación frontend se comunica con el backend para obtener el estado inicial de los datos base, a partir de los cuales se pueden trabajar las diferentes funcionalidades ofrecidas. Estos datos se reciben y actualizan por interbalos permitiendo mostrar diversas mecánicas y actividades desempeñadas por los dinosaurios a lo largo de su ciclo de vida a través de maquetaciones visualmente atractivas, siempre en función de los usuarios y paleontolosgos responsables de la muestra de los sucesos desarrollados en la aplicación.
 
-**Extras a tener en cuenta:**
+## **Extras a tener en cuenta:**
 
-* Clasificación y Comportamiento de los Dinosaurios
+### -Clasificación y Comportamiento de los Dinosaurios
 Los dinosaurios se clasifican en carnívoros, herbívoros y omnívoros, cada uno con subtipos específicos (acuáticos, terrestres y voladores). Cada tipo sigue un conjunto de reglas de interacción y alimentación propias. Por ejemplo:
 
 Carnívoros: pueden cazar presas según su subtipo (un carnívoro acuático solo caza dinosaurios acuáticos, mientras que uno volador tiene acceso a una gama más amplia de presas).
@@ -40,7 +40,7 @@ Omnívoros: su dieta es más flexible, permitiéndoles consumir plantas y otros 
 
 Estas reglas permiten una simulación natural y dinámica de la interacción entre diferentes tipos de dinosaurios, replicando patrones de comportamiento y relaciones de depredador-presa.
 
-* Manejo del Envejecimiento y Mortalidad
+### -Manejo del Envejecimiento y Mortalidad
 El sistema incluye una función de mortalidad que se activa cuando un dinosaurio alcanza los 20 años de edad. A partir de ese momento, cada año adicional incrementa en un 0.02 la probabilidad de muerte del dinosaurio, simulando el envejecimiento natural y los riesgos asociados a la longevidad en la vida salvaje. Este proceso se realiza en segundo plano, sin afectar la experiencia de usuario.
 
 Para poder probar todas estas funcionalidades sin limitaciones, existen cuentas precreadas para un administrador, un paleontologo y un usuario convencional. Estas cuentas tienen el único de diferencias la experiencias a disfrutar pudiendo gestionar el registro de usuarios, la visualizacion de los dinosuarios (en cuerpo y alma en las islas y vislumbrar la gestión de sus datos por sensores en una tabla respectivamente).
