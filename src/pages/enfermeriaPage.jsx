@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getIsla } from '../services/apiService';
 import '../styles/isla.css';
 import '../styles/spinner.css';
+import {Link} from "react-router-dom";
 
 function EnfermeriaPage() {
     const [enfermeria, setEnfermeria] = useState(null);
@@ -41,10 +42,10 @@ function EnfermeriaPage() {
 
     return (
         <div className="enfermeriapage">
+            <Link to="/user" className="back-button">Regresar</Link> {/* Botón de regreso */}
             <div className="text-content">
                 <h1>{enfermeria.nombre}</h1>
                 <p>Capacidad Máxima: {enfermeria.capacidadMaxima}</p>
-                <h2>Dinosaurios en Enfermería:</h2>
                 <ul>
                     {enfermeria.dinosaurios && enfermeria.dinosaurios.map(dino => (
                         <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>

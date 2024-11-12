@@ -83,3 +83,27 @@
     background-repeat: no-repeat;
     background-color: transparent;
 }
+
+.back-button {
+    position: absolute; /* Posiciona el botón de forma absoluta */
+    top: 20px; /* Ajusta la distancia desde la parte superior */
+    left: 20px; /* Ajusta la distancia desde el borde derecho */
+    display: inline-block;
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #d32f2f; /* Color rojo del botón */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: yellow; /* Rojo más oscuro al pasar el ratón */
+
+}
+
+

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getIsla } from '../services/apiService';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import '../styles/spinner.css';
+import '../styles/isla.css';
 
 function IslaPage() {
     const { id } = useParams();
@@ -23,11 +24,6 @@ function IslaPage() {
         };
 
         fetchData();
-        const intervalId = setInterval(() => {
-            window.location.reload();
-        }, 7000);
-
-        return () => clearInterval(intervalId);
     }, [id]);
 
     if (loading) {
@@ -41,6 +37,7 @@ function IslaPage() {
 
     return (
         <div className="islapage">
+            <Link to="/user" className="back-button">Regresar</Link> {/* Botón de regreso */}
             <table>
                 <tbody>
                 {isla.tablero && isla.tablero.map((fila, indexFila) => (

@@ -25,6 +25,11 @@ color: #d32f2f}
     object-fit: contain;
 }
 
+.userpage {
+    background-image: url('/images/aim.webp');
+
+}
+
 .userpage h1 {
     color: #f0c040; /* Color dorado similar al de Jurassic Park */
     font-size: 36px;
@@ -59,7 +64,4 @@ color: #d32f2f}
     color: #f0c040; /* Letra dorada en hover */
 }
 
-/* Cambiar el fondo para llenar toda la página */
-body {
-    background-color: #0d0d0d; /* Fondo oscuro completo */
-}
+
