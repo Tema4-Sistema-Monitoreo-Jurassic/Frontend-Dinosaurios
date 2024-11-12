@@ -1,4 +1,4 @@
-# Sistema de Monitoreo de Dinosaurios - Backend (Spring WebFlux)
+# Sistema de Monitoreo de Dinosaurios - Frontend (Spring WebFlux)
 
 # LINKS
 
