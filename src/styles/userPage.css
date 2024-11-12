@@ -1,6 +1,6 @@
 /* src/styles/userPage.css */
 .userpage {
-    padding: 44px;
+    padding: 190px;
     color: #fff;
     background-color: #0d0d0d; /* Fondo oscuro igual al fondo de la imagen */
     font-family: 'Verdana', sans-serif;
@@ -13,6 +13,25 @@
     justify-content: center;
     margin-bottom: 20px;
 }
+
+/* CSS para el botón */
+/* CSS para el botón */
+.button1 {
+    position: fixed;         /* Posiciona el botón relativo a la ventana de visualización */
+    border: 2px solid red;   /* Borde rojo */
+    background-color: white; /* Fondo blanco */
+    color: black;            /* Color inicial del texto */
+    font-size: 16px;         /* Tamaño de fuente */
+    cursor: pointer;         /* Cambia el cursor a una mano al pasar por encima */
+    transition: color 0.3s;  /* Transición suave para el cambio de color */
+}
+
+/* Efecto hover para cambiar el color del texto a amarillo */
+.button1:hover {
+    color: yellow;           /* Cambia el color del texto a amarillo */
+}
+
+
 
 .userpage p{
 color: #d32f2f}

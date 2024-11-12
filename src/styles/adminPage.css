@@ -7,6 +7,29 @@
     text-align: center;
 }
 
+.button1 {
+    position: absolute;      /* Posiciona el botón en relación a la página */
+    top: 10px;               /* Desplazamiento desde la parte superior */
+    left: 10px;              /* Desplazamiento desde la izquierda */
+    padding: 10px 20px;      /* Espaciado interno del botón */
+    color: black;            /* Color inicial del texto */
+    font-size: 16px;         /* Tamaño de fuente */
+    cursor: pointer;         /* Cambia el cursor a una mano al pasar por encima */
+    transition: color 0.3s;
+    text-decoration: none;
+    font-size: 18px;
+    background-color: #d32f2f; /* Color rojo del marco de Jurassic Park */
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-weight: bold;/* Transición suave para el cambio de color */
+}
+
+/* Efecto hover para cambiar el color del texto a amarillo */
+.button1:hover {
+    color: yellow;           /* Cambia el color del texto a amarillo */
+}
+
 .adminpage h1 {
     color: #f0c040;
     margin-bottom: 30px;

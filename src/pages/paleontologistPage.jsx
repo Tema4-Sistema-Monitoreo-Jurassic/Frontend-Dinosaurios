@@ -1,11 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { getDinosauriosConDatos } from '../services/apiService';
 import HeartbeatMonitor from '../components/HeartbeatMonitor';
 import '../styles/spinner.css';
+import {AuthContext} from "../context/AuthContext";
+import {useNavigate} from "react-router-dom";
 
 function PaleontologistPage() {
     const [dinosaurios, setDinosaurios] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();      // Llama a la función logout del contexto
+        navigate('/'); // Redirige a la página de inicio de sesión
+    };
 
     const fetchData = () => {
         setLoading(true);
@@ -43,78 +53,98 @@ function PaleontologistPage() {
     return (
         <div className="page-container">
             <style>{`
-                .page-container {
-                    display: flex;
-                    min-height: 100vh;
-                    background-color: #0d0d0d;
-                }
-                .tabla-container {
-                    flex: 3;
-                    padding-left: 0;
-                    display: flex;
-                    align-items: center;
-                }
-                .tabla-dinosaurios {
-                    width: 100%;
-                    border-collapse: collapse;
-                    font-family: 'Verdana', sans-serif;
-                    color: #fff;
-                    background-color: #333;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-                    border: 2px solid #666;
-                }
-                .tabla-dinosaurios th, .tabla-dinosaurios td {
-                    border: 1px solid #444;
-                    padding: 15px;
-                    text-align: left;
-                    vertical-align: top;
-                    background-color: #2a2a2a;
-                }
-                .tabla-dinosaurios thead th {
-                    background-color: #444;
-                    color: #f0c040;
-                    font-size: 1.1em;
-                    border: 2px solid #666;
-                }
-                .tabla-dinosaurios div {
-                    background-color: #555;
-                    padding: 5px;
-                    margin: 5px 0;
-                    border-left: 5px solid #f0c040;
-                    border-radius: 4px;
-                    border: 1px solid #444;
-                }
-                .heartbeat-monitor-container {
-                    flex: 1;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                .loading {
-                    color: #fff;
-                    text-align: center;
-                    padding: 20px;
-                }
-                .spinner-container {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    height: 100vh;
-                }
-                .spinner {
-                    border: 16px solid #f3f3f3;
-                    border-top: 16px solid #3498db;
-                    border-radius: 50%;
-                    width: 120px;
-                    height: 120px;
-                    animation: spin 2s linear infinite;
-                }
-                @keyframes spin {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                }
-            `}</style>
+            .page-container {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                background-color: #0d0d0d;
+            }
+            .tabla-container {
+                flex: 3;
+                padding-left: 0;
+                display: flex;
+                align-items: center;
+            }
+            .tabla-dinosaurios {
+                width: 100%;
+                border-collapse: collapse;
+                font-family: 'Verdana', sans-serif;
+                color: #fff;
+                background-color: #333;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+                border: 2px solid #666;
+            }
+            .tabla-dinosaurios th, .tabla-dinosaurios td {
+                border: 1px solid #444;
+                padding: 15px;
+                text-align: left;
+                vertical-align: top;
+                background-color: #2a2a2a;
+            }
+            .tabla-dinosaurios thead th {
+                background-color: #444;
+                color: #f0c040;
+                font-size: 1.1em;
+                border: 2px solid #666;
+            }
+            .tabla-dinosaurios div {
+                background-color: #555;
+                padding: 5px;
+                margin: 5px 0;
+                border-left: 5px solid #f0c040;
+                border-radius: 4px;
+                border: 1px solid #444;
+            }
+            .heartbeat-monitor-container {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .loading {
+                color: #fff;
+                text-align: center;
+                padding: 20px;
+            }
+            .spinner-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+            .button1 {
+                position: fixed;
+                right: 20px;
+                padding: 10px 20px;
+                border: 2px solid red;
+                background-color: white;
+                color: black;
+                font-size: 16px;
+                cursor: pointer;
+                transition: color 0.3s;
+                border-radius: 5px;
+                width: auto;
+                height: auto;
+                box-sizing: content-box;
+            }
+            .button1:hover {
+                color: yellow;
+            }
+            .spinner {
+                border: 16px solid #f3f3f3;
+                border-top: 16px solid #3498db;
+                border-radius: 50%;
+                width: 120px;
+                height: 120px;
+                animation: spin 2s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `}</style>
+
             <div className="tabla-container">
                 <table className="tabla-dinosaurios">
                     <thead>
@@ -151,11 +181,16 @@ function PaleontologistPage() {
                     </tbody>
                 </table>
             </div>
+
+            {/* Botón de Logout entre tabla-container y heartbeat-monitor-container */}
+            <button onClick={handleLogout} className="button1">Log Out</button>
+
             <div className="heartbeat-monitor-container">
                 <HeartbeatMonitor />
             </div>
         </div>
     );
+
 }
 
 export default PaleontologistPage;
