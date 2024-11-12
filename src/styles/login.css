@@ -1,0 +1,99 @@
+/* Estructura principal */
+.login-page {
+    display: flex;
+    height: 100vh;
+    font-family: 'Verdana', sans-serif;
+}
+
+/* Fondo izquierdo (Login Container) */
+.login-container {
+    width: 50%;
+    background-image: url('/images/bck.png'); /* Ruta de la imagen de fondo izquierda */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Separador de huesos */
+.separator {
+    position: absolute;
+    top: 0;
+    left: 51%; /* Centra el separador en la mitad de la pantalla */
+    transform: translateX(-50%); /* Ajuste para centrar en el contenedor */
+    width: 100px; /* Ajusta el ancho según sea necesario */
+    height: 100vh;
+    background-image: url('/images/elhueso.png'); /* Ruta de la imagen de huesos */
+    background-repeat: repeat-y;
+    background-size: contain;
+    pointer-events: none; /* Para evitar que el separador bloquee el contenido detrás */
+}
+/* Fondo derecho (GIF Container) */
+.gif-container {
+    width: 50%;
+    background-image: url('https://64.media.tumblr.com/b58d61b579d6249e6d6703c1d9eed14a/tumblr_nxkioorl1i1s335jfo1_r2_540.gif'); /* Ruta del GIF */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Estilos para el formulario de inicio de sesión */
+.login-page h1 {
+    color: red;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-form label {
+    color: #f0c040;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 2px solid #d32f2f;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+    border-color: #f0c040;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #d32f2f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.login-form button:hover {
+    background-color: #b71c1c;
+    color: #f0c040;
+}

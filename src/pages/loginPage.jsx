@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/apiService';
-// import '../styles/login.css';
+import '../styles/login.css';
 
 function LoginPage() {
     const [nombreOrCorreo, setNombreOrCorreo] = useState('');
@@ -30,7 +30,6 @@ function LoginPage() {
     };
 
     useEffect(() => {
-        // Redirigir solo si el usuario está autenticado
         if (authData.isAuthenticated && authData.role) {
             switch (authData.role) {
                 case 'admin':
@@ -51,28 +50,32 @@ function LoginPage() {
 
     return (
         <div className="login-page">
-            <h1>Iniciar Sesión</h1>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <div>
-                    <label>Nombre de Usuario o Correo:</label>
-                    <input
-                        type="text"
-                        value={nombreOrCorreo}
-                        onChange={(e) => setNombreOrCorreo(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Contraseña:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit">Ingresar</button>
-            </form>
+            <div className="login-container">
+                <h1>Iniciar Sesión</h1>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div>
+                        <label>Nombre de Usuario o Correo:</label>
+                        <input
+                            type="text"
+                            value={nombreOrCorreo}
+                            onChange={(e) => setNombreOrCorreo(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label>Contraseña:</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit">Ingresar</button>
+                </form>
+            </div>
+            <div className="separator"></div> {/* Separador de huesos */}
+            <div className="gif-container"></div>
         </div>
     );
 }
