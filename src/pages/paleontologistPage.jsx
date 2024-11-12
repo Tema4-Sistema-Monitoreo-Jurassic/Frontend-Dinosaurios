@@ -7,24 +7,22 @@ function PaleontologistPage() {
     const [dinosaurios, setDinosaurios] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchData = () => {
-            setLoading(true);
-            getDinosauriosConDatos()
-                .then(response => {
-                    setDinosaurios(response.data);
-                    setLoading(false);
-                })
-                .catch(error => {
-                    console.error('Error al obtener dinosaurios con datos:', error);
-                    setLoading(false);
-                });
-        };
+    const fetchData = () => {
+        setLoading(true);
+        getDinosauriosConDatos()
+            .then(response => {
+                setDinosaurios(response.data);
+                setTimeout(() => setLoading(false), 2000); // Spinner effect lasts 2 seconds
+            })
+            .catch(error => {
+                console.error('Error al obtener dinosaurios con datos:', error);
+                setLoading(false);
+            });
+    };
 
+    useEffect(() => {
         fetchData();
-        const intervalId = setInterval(() => {
-            window.location.reload();
-        }, 25000);
+        const intervalId = setInterval(fetchData, 25000); // Actualiza cada 25 segundos
 
         return () => clearInterval(intervalId);
     }, []);
