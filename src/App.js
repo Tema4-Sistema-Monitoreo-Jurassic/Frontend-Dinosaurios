@@ -9,13 +9,14 @@ import PaleontologistPage from './pages/paleontologistPage';
 import IslaPage from './pages/islaPage';
 import CriaderoPage from './pages/criaderoPage';
 import EnfermeriaPage from './pages/enfermeriaPage';
+import LoginPage from "./pages/loginPage";
 
 function App() {
     return (
         <Router>
             <Navbar />
             <Routes>
-                <Route path="/" element={<Homepage />} />
+                <Route path="/" element={<LoginPage />} />
                 <Route path="/user" element={<UserPage />} />
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/paleontologist" element={<PaleontologistPage />} />
