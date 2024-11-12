@@ -69,13 +69,13 @@ Para ejecutar el frontend necesitas tener instalados:
 1. Clona el repositorio del frontend en tu máquina local:
 
 ```bash
-git clone https://github.com/tu-usuario/frontend-magia.git
+git clone https://github.com/tu-usuario/frontend-dino.git
 ```
 
 2. Navega al directorio del proyecto:
 
 ```bash
-cd frontend-magia
+cd frontend-dino
 ```
 
 3. Instala las dependencias del proyecto::
