@@ -13,7 +13,6 @@ import EnfermeriaPage from './pages/enfermeriaPage';
 function App() {
     return (
         <Router>
-            <Navbar />
             <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/user" element={<UserPage />} />

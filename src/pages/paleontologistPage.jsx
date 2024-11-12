@@ -1,24 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { getDinosauriosConDatos } from '../services/apiService';
+import '../styles/spinner.css'; // Make sure to create and style this CSS file
 
 function PaleontologistPage() {
     const [dinosaurios, setDinosaurios] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getDinosauriosConDatos()
-            .then(response => {
-                setDinosaurios(response.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error al obtener dinosaurios con datos:', error);
-                setLoading(false);
-            });
+        const fetchData = () => {
+            setLoading(true);
+            getDinosauriosConDatos()
+                .then(response => {
+                    setDinosaurios(response.data);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error('Error al obtener dinosaurios con datos:', error);
+                    setLoading(false);
+                });
+        };
+
+        fetchData(); // Cargar los datos inicialmente
+        const intervalId = setInterval(() => {
+            window.location.reload();
+        }, 7000); // Recargar cada 7 segundos
+
+        return () => clearInterval(intervalId); // Limpiar el intervalo cuando se desmonte
     }, []);
 
     if (loading) {
-        return <div className="loading">Cargando dinosaurios...</div>;
+        return (
+            <div className="spinner-container">
+                <div className="spinner"></div>
+                <p>Cargando dinosaurios...</p>
+            </div>
+        );
     }
 
     if (dinosaurios.length === 0) {
@@ -70,6 +86,25 @@ function PaleontologistPage() {
                     color: #fff;
                     text-align: center;
                     padding: 20px;
+                }
+                .spinner-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100vh;
+                }
+                .spinner {
+                    border: 16px solid #f3f3f3;
+                    border-top: 16px solid #3498db;
+                    border-radius: 50%;
+                    width: 120px;
+                    height: 120px;
+                    animation: spin 2s linear infinite;
+                }
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
                 }
             `}</style>
             <table className="tabla-dinosaurios">

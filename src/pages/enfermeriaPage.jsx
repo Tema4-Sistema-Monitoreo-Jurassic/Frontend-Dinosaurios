@@ -1,32 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { getIsla } from '../services/apiService';
 import '../styles/isla.css';
+import '../styles/spinner.css';
 
 function EnfermeriaPage() {
     const [enfermeria, setEnfermeria] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = () => {
-            const enfermeriaId = '3'; // ID de la enfermería
+            setLoading(true);
+            const enfermeriaId = '3';
             getIsla(enfermeriaId)
                 .then(response => {
                     setEnfermeria(response.data);
+                    setLoading(false);
                 })
                 .catch(error => {
                     console.error('Error al obtener la enfermería:', error);
+                    setLoading(false);
                 });
         };
 
-        fetchData(); // Cargar los datos inicialmente
+        fetchData();
         const intervalId = setInterval(() => {
             window.location.reload();
-        }, 7000); // Recargar cada 7 segundos
+        }, 7000);
 
-        return () => clearInterval(intervalId); // Limpiar el intervalo cuando se desmonte
+        return () => clearInterval(intervalId);
     }, []);
 
-    if (!enfermeria) {
-        return <div>Cargando...</div>;
+    if (loading) {
+        return (
+            <div className="spinner-container">
+                <div className="spinner"></div>
+                <p>Cargando...</p>
+            </div>
+        );
     }
 
     return (
