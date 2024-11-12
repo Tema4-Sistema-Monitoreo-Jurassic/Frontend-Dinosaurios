@@ -21,7 +21,7 @@ BACKEND: https://github.com/Tema4-Sistema-Monitoreo-Jurassic/Backend-Sistema-Mon
 
 # Gestión Dinosaurios Frontend
 
-Este proyecto consiste en el desarrollo del frontend de una aplicación ** [Spring-WebFlux que se aprovecha de una BBDD reactiva concretamente MongoDB] ** y solapa la coordinacion y deteccion de sucesos mediante ** [RabbitMQ] **. Partimos de un loggin que vifurca las diferentes actividades en base al rol con el que inicias sesion(usuario, admin o paleontologo), sesion que puedes crear en una sección de registro.
+Este proyecto consiste en el desarrollo del frontend de una aplicación **[Spring-WebFlux que se aprovecha de una BBDD reactiva concretamente MongoDB]** y solapa la coordinacion y deteccion de sucesos mediante **[RabbitMQ]**. Partimos de un loggin que vifurca las diferentes actividades en base al rol con el que inicias sesion(usuario, admin o paleontologo), sesion que puedes crear en una sección de registro.
 Desborda a nivel estetico gracias a la muestra-visualización e interacción activa con múltiples pantallas, las cuales presentan diversos ecosistemas (islas-criaderos-enfermerias). Estos sistemas han sido desarrollados mediante prácticas de reactividad, control de flujo, orientación a aspectos y monitorizacion pudiendo observar en dichos ecosistemas diferentes tipos de dinosaurios que se desenvulven como si estubiesen vivos (se desplazan, emferman/son curados en la enfermeria, interactuan entre ellos, comen, crecen e incluso fallecen de diversas causas).
 Explotando la dinámica y la utilización transversal de los servicios necesarios planteados en el backend filtrados y monitorizados gracias al flujo, la reactividad y monitorización que trae consigo WebFlux+Reactive Mongo. Esto ha permitido optimizar el código, reduciendo su volumen y cumpliendo con todas las posibles interacciones y desempeños de los dinosaurios planteados (en la gran variedad que estos plantean en base a sus subtipos)
 
@@ -33,8 +33,11 @@ La aplicación frontend se comunica con el backend para obtener el estado inicia
 Los dinosaurios se clasifican en carnívoros, herbívoros y omnívoros, cada uno con subtipos específicos (acuáticos, terrestres y voladores). Cada tipo sigue un conjunto de reglas de interacción y alimentación propias. Por ejemplo:
 
 Carnívoros: pueden cazar presas según su subtipo (un carnívoro acuático solo caza dinosaurios acuáticos, mientras que uno volador tiene acceso a una gama más amplia de presas).
+
 Herbívoros: se alimentan únicamente de plantas, con interacciones que limitan su contacto con dinosaurios predadores.
+
 Omnívoros: su dieta es más flexible, permitiéndoles consumir plantas y otros dinosaurios según su subtipo.
+
 Estas reglas permiten una simulación natural y dinámica de la interacción entre diferentes tipos de dinosaurios, replicando patrones de comportamiento y relaciones de depredador-presa.
 
 * Manejo del Envejecimiento y Mortalidad
