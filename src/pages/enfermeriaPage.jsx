@@ -1,24 +1,42 @@
-// src/components/enfermeriaPage.jsx
 import React, { useEffect, useState } from 'react';
 import { getIsla } from '../services/apiService';
 import '../styles/isla.css';
+import '../styles/spinner.css';
 
 function EnfermeriaPage() {
     const [enfermeria, setEnfermeria] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const enfermeriaId = '3'; // ID de la enfermería
-        getIsla(enfermeriaId)
-            .then(response => {
-                setEnfermeria(response.data);
-            })
-            .catch(error => {
-                console.error('Error al obtener la enfermería:', error);
-            });
+        const fetchData = () => {
+            setLoading(true);
+            const enfermeriaId = '3';
+            getIsla(enfermeriaId)
+                .then(response => {
+                    setEnfermeria(response.data);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error('Error al obtener la enfermería:', error);
+                    setLoading(false);
+                });
+        };
+
+        fetchData();
+        const intervalId = setInterval(() => {
+            window.location.reload();
+        }, 7000);
+
+        return () => clearInterval(intervalId);
     }, []);
 
-    if (!enfermeria) {
-        return <div>Cargando...</div>;
+    if (loading) {
+        return (
+            <div className="spinner-container">
+                <div className="spinner"></div>
+                <p>Cargando...</p>
+            </div>
+        );
     }
 
     return (
@@ -34,7 +52,6 @@ function EnfermeriaPage() {
                 </ul>
             </div>
             <div className="table-container">
-                <h2>Tablero:</h2>
                 <table>
                     <tbody>
                     {enfermeria.tablero && enfermeria.tablero.map((fila, indexFila) => (

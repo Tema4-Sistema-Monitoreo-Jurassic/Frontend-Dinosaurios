@@ -1,8 +1,8 @@
 /* General styling for all pages */
 .islapage, .criaderopage, .enfermeriapage {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
     gap: 20px; /* Space between text and board */
     padding: 0px;
     color: #f0c040;
@@ -16,18 +16,14 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-
 }
 
-/* Styling for text content section */
-.text-content {
-    width: 200px; /* Adjust as needed */
-    text-align: left; /* Align text to the left */
-}
-
-/* Table container adjustments to bring it higher */
+/* Table container adjustments to center it */
 .table-container {
-    transform: translateY(-30px); /* Moves the table container up */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Table styling */

@@ -30,4 +30,10 @@ export const getIsla = (id) => {
     return axios.get(`${API_BASE_URL}/islas/${id}`);
 };
 
+// Llamada al nuevo endpoint para obtener dinosaurios con sus sensores y datos
+export const getDinosauriosConDatos = () => {
+    return axios.get(`${API_BASE_URL}/dinosaurios/con-datos`);
+};
+
 // Otros métodos si es necesario...
+

@@ -14,7 +14,6 @@ import LoginPage from "./pages/loginPage";
 function App() {
     return (
         <Router>
-            <Navbar />
             <Routes>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/user" element={<UserPage />} />

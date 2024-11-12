@@ -1,35 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { getIsla } from '../services/apiService';
 import { useParams } from 'react-router-dom';
+import '../styles/spinner.css';
 
 function CriaderoPage() {
     const { id } = useParams();
     const [criadero, setCriadero] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = () => {
+            setLoading(true);
             getIsla(id)
                 .then(response => {
                     setCriadero(response.data);
+                    setLoading(false);
                 })
                 .catch(error => {
                     console.error('Error al obtener el criadero:', error);
+                    setLoading(false);
                 });
         };
 
-        fetchData(); // Cargar los datos inicialmente
-        const intervalId = setInterval(fetchData, 1000); // Actualizar cada segundo
+        fetchData();
+        const intervalId = setInterval(() => {
+            window.location.reload();
+        }, 7000);
 
-        return () => clearInterval(intervalId); // Limpiar el intervalo cuando se desmonte
+        return () => clearInterval(intervalId);
     }, [id]);
 
-    if (!criadero) {
-        return <div>Cargando el tablero...</div>;
+    if (loading) {
+        return (
+            <div className="spinner-container">
+                <div className="spinner"></div>
+                <p>Cargando el tablero...</p>
+            </div>
+        );
     }
 
     return (
         <div className="criaderopage">
-            <h2>Tablero:</h2>
             <table>
                 <tbody>
                 {criadero.tablero && criadero.tablero.map((fila, indexFila) => (
