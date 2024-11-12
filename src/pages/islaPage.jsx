@@ -18,7 +18,9 @@ function IslaPage() {
         };
 
         fetchData(); // Cargar los datos inicialmente
-        const intervalId = setInterval(fetchData, 1000); // Actualizar cada segundo
+        const intervalId = setInterval(() => {
+            window.location.reload();
+        }, 7000); // Recargar cada 7 segundos
 
         return () => clearInterval(intervalId); // Limpiar el intervalo cuando se desmonte
     }, [id]);
@@ -29,7 +31,6 @@ function IslaPage() {
 
     return (
         <div className="islapage">
-            <h2>Tablero:</h2>
             <table>
                 <tbody>
                 {isla.tablero && isla.tablero.map((fila, indexFila) => (

@@ -1,4 +1,3 @@
-// src/components/enfermeriaPage.jsx
 import React, { useEffect, useState } from 'react';
 import { getIsla } from '../services/apiService';
 import '../styles/isla.css';
@@ -7,14 +6,23 @@ function EnfermeriaPage() {
     const [enfermeria, setEnfermeria] = useState(null);
 
     useEffect(() => {
-        const enfermeriaId = '3'; // ID de la enfermería
-        getIsla(enfermeriaId)
-            .then(response => {
-                setEnfermeria(response.data);
-            })
-            .catch(error => {
-                console.error('Error al obtener la enfermería:', error);
-            });
+        const fetchData = () => {
+            const enfermeriaId = '3'; // ID de la enfermería
+            getIsla(enfermeriaId)
+                .then(response => {
+                    setEnfermeria(response.data);
+                })
+                .catch(error => {
+                    console.error('Error al obtener la enfermería:', error);
+                });
+        };
+
+        fetchData(); // Cargar los datos inicialmente
+        const intervalId = setInterval(() => {
+            window.location.reload();
+        }, 7000); // Recargar cada 7 segundos
+
+        return () => clearInterval(intervalId); // Limpiar el intervalo cuando se desmonte
     }, []);
 
     if (!enfermeria) {
@@ -34,7 +42,6 @@ function EnfermeriaPage() {
                 </ul>
             </div>
             <div className="table-container">
-                <h2>Tablero:</h2>
                 <table>
                     <tbody>
                     {enfermeria.tablero && enfermeria.tablero.map((fila, indexFila) => (
