@@ -1,0 +1,292 @@
+/* Navegación */
+nav {
+    background-color: #2d2d2d;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #f0c040;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #d32f2f; /* Rojo de Jurassic Park en hover */
+}
+/* src/styles/homePage.css */
+.homepage {
+    text-align: center;
+    padding: 62px;
+    background-color: #0d0d0d; /* Fondo oscuro igual al de la imagen */
+    font-family: 'Verdana', sans-serif;
+}
+
+.homepage h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #f0c040;
+    text-shadow: 3px 3px #000;
+    transition: color 0.3s;
+}
+
+.homepage h1:hover {
+    color: #d32f2f; /* Rojo del marco de la imagen en hover */
+}
+
+
+.homepage p {
+    font-size: 24px;
+    color: #d32f2f;
+    text-shadow: 2px 2px #000;
+    transition: color 0.3s;
+}
+
+.homepage p:hover {
+    color: #f0c040; /* Rojo en hover */
+}
+
+/* src/styles/userPage.css */
+.userpage {
+    padding: 44px;
+    color: #fff;
+    background-color: #0d0d0d; /* Fondo oscuro igual al fondo de la imagen */
+    font-family: 'Verdana', sans-serif;
+    text-align: center;
+}
+
+/* Contenedor del Banner */
+.banner-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.userpage p{
+color: #d32f2f}
+
+.banner {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.userpage h1 {
+    color: #f0c040; /* Color dorado similar al de Jurassic Park */
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.userpage ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+}
+
+.userpage ul li {
+    margin: 15px;
+}
+
+.userpage ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    background-color: #d32f2f; /* Color rojo del marco de Jurassic Park */
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.userpage ul li a:hover {
+    background-color: #b71c1c; /* Rojo oscuro al pasar el ratón */
+    color: #f0c040; /* Letra dorada en hover */
+}
+
+/* Cambiar el fondo para llenar toda la página */
+body {
+    background-color: #0d0d0d; /* Fondo oscuro completo */
+}
+
+/* src/styles/adminPage.css */
+
+.adminpage {
+    padding: 40px;
+    color: #fff;
+    background-color: #0d0d0d;
+    text-align: center;
+}
+
+.adminpage h1 {
+    color: #f0c040;
+    margin-bottom: 30px;
+}
+
+.user-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-form div {
+    margin-bottom: 15px;
+}
+
+.user-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #f0c040;
+}
+
+.user-form input,
+.user-form select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+}
+
+.user-form button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #d32f2f;
+    color: #f0c040;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-form button:hover {
+    background-color: #b71c1c;
+}
+
+.user-form input:focus,
+.user-form select:focus {
+    outline: none;
+    border-color: #f0c040;
+}
+
+body {
+    margin: 0;
+    font-family: 'Verdana', sans-serif;
+    background-color: #0d0d0d; /* Fondo oscuro general */
+    color: #fff;
+}
+
+/* General styling for all pages */
+.islapage, .criaderopage, .enfermeriapage {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px; /* Space between text and board */
+    padding: 0px;
+    color: #f0c040;
+    background-image: url(/2f73c59194ef8fe2c731.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+}
+
+/* Styling for text content section */
+.text-content {
+    width: 200px; /* Adjust as needed */
+    text-align: left; /* Align text to the left */
+}
+
+/* Table container adjustments to bring it higher */
+.table-container {
+    transform: translateY(-30px); /* Moves the table container up */
+}
+
+/* Table styling */
+.islapage table, .criaderopage table, .enfermeriapage table {
+    margin: 0;
+    border-collapse: collapse;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid #f0c040;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Table cell styling */
+.islapage td, .criaderopage td, .enfermeriapage td {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #333;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s;
+}
+
+.islapage td:hover, .criaderopage td:hover, .enfermeriapage td:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px #f0c040;
+}
+
+.text-content {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 220px; /* Adjust width as needed */
+    color: #f0c040;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+    z-index: 10; /* Ensures it stays on top of other elements */
+}
+
+/* Title and list styling */
+.text-content h1 {
+    font-size: 24px;
+    margin: 0 0 10px;
+}
+
+.text-content p, .text-content h2, .text-content ul {
+    margin: 0 0 10px;
+    font-size: 16px;
+}
+
+.islapage td.occupied, .criaderopage td.occupied, .enfermeriapage td.occupied {
+    background-image: url(/2d163048061cdb1c2c04.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+

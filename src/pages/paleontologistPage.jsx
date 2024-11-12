@@ -1,30 +1,146 @@
-// src/components/paleontologistPage.jsx
 import React, { useEffect, useState } from 'react';
-import { getEvents } from '../services/apiService';
-import EventList from '../components/EventList';
-import '../styles/palentologistPage.css';
-import '../styles/heartBeatMonitor.css';
-import HeartbeatMonitor from '../components/HeartBeatMonitor';
+import { getDinosauriosConDatos } from '../services/apiService';
+import '../styles/spinner.css'; // Make sure to create and style this CSS file
 
 function PaleontologistPage() {
-    const [eventos, setEventos] = useState([]);
+    const [dinosaurios, setDinosaurios] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getEvents()
-            .then(response => {
-                setEventos(response.data);
-            })
-            .catch(error => {
-                console.error('Error al obtener los eventos:', error);
-            });
+        const fetchData = () => {
+            setLoading(true);
+            getDinosauriosConDatos()
+                .then(response => {
+                    setDinosaurios(response.data);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error('Error al obtener dinosaurios con datos:', error);
+                    setLoading(false);
+                });
+        };
+
+        fetchData(); // Cargar los datos inicialmente
+        const intervalId = setInterval(() => {
+            window.location.reload();
+        }, 7000); // Recargar cada 7 segundos
+
+        return () => clearInterval(intervalId); // Limpiar el intervalo cuando se desmonte
     }, []);
 
+    if (loading) {
+        return (
+            <div className="spinner-container">
+                <div className="spinner"></div>
+                <p>Cargando dinosaurios...</p>
+            </div>
+        );
+    }
+
+    if (dinosaurios.length === 0) {
+        return <div className="loading">No hay dinosaurios con datos disponibles en este momento.</div>;
+    }
+
     return (
-        <div className="paleopage">
-            <h1>Página del Paleontólogo</h1>
-            <h2>Eventos Generados</h2>
-            <HeartbeatMonitor />
-            <EventList eventos={eventos} />
+        <div className="tabla-container">
+            <style>{`
+                .tabla-container {
+                    display: flex;
+                    justify-content: center;
+                    padding: 20px;
+                    background-color: #0d0d0d;
+                    min-height: 100vh;
+                    align-items: center;
+                }
+                .tabla-dinosaurios {
+                    width: 80%;
+                    border-collapse: collapse;
+                    font-family: 'Verdana', sans-serif;
+                    color: #fff;
+                    background-color: #333;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+                    border: 2px solid #666;
+                }
+                .tabla-dinosaurios th, .tabla-dinosaurios td {
+                    border: 1px solid #444;
+                    padding: 15px;
+                    text-align: left;
+                    vertical-align: top;
+                    background-color: #2a2a2a;
+                }
+                .tabla-dinosaurios thead th {
+                    background-color: #444;
+                    color: #f0c040;
+                    font-size: 1.1em;
+                    border: 2px solid #666;
+                }
+                .tabla-dinosaurios div {
+                    background-color: #555;
+                    padding: 5px;
+                    margin: 5px 0;
+                    border-left: 5px solid #f0c040;
+                    border-radius: 4px;
+                    border: 1px solid #444;
+                }
+                .loading {
+                    color: #fff;
+                    text-align: center;
+                    padding: 20px;
+                }
+                .spinner-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100vh;
+                }
+                .spinner {
+                    border: 16px solid #f3f3f3;
+                    border-top: 16px solid #3498db;
+                    border-radius: 50%;
+                    width: 120px;
+                    height: 120px;
+                    animation: spin 2s linear infinite;
+                }
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `}</style>
+            <table className="tabla-dinosaurios">
+                <thead>
+                <tr>
+                    <th>Tipo de Dinosaurio</th>
+                    <th>Tipo de Sensor</th>
+                    <th>Últimos Datos</th>
+                </tr>
+                </thead>
+                <tbody>
+                {dinosaurios.map(dino => (
+                    <React.Fragment key={dino.id}>
+                        <tr>
+                            <td rowSpan={dino.sensores.length}>{dino.nombre}</td>
+                            <td>{dino.sensores[0].tipo}</td>
+                            <td>
+                                {dino.sensores[0].datos.slice(-3).map((dato, idx) => (
+                                    <div key={idx}>Valor: {dato.valor}</div>
+                                ))}
+                            </td>
+                        </tr>
+                        {dino.sensores.slice(1).map((sensor, index) => (
+                            <tr key={index}>
+                                <td>{sensor.tipo}</td>
+                                <td>
+                                    {sensor.datos.slice(-3).map((dato, idx) => (
+                                        <div key={idx}>Valor: {dato.valor}</div>
+                                    ))}
+                                </td>
+                            </tr>
+                        ))}
+                    </React.Fragment>
+                ))}
+                </tbody>
+            </table>
         </div>
     );
 }
