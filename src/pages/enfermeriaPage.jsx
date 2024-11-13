@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 
 function EnfermeriaPage() {
     const [enfermeria, setEnfermeria] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [refreshing, setRefreshing] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const fetchData = () => {
         setLoading(true);
@@ -15,7 +14,7 @@ function EnfermeriaPage() {
         getIsla(enfermeriaId)
             .then(response => {
                 setEnfermeria(response.data);
-                setLoading(false);
+                setTimeout(() => setLoading(false), 2000); // Spinner effect lasts 2 seconds
             })
             .catch(error => {
                 console.error('Error al obtener la enfermería:', error);
@@ -26,59 +25,46 @@ function EnfermeriaPage() {
     useEffect(() => {
         fetchData();
         const intervalId = setInterval(() => {
-            setRefreshing(true);
-            setTimeout(() => {
-                fetchData();
-                setRefreshing(false);
-            }, 2000);
-        }, 9000); // Refresh every 9 seconds
+            window.location.reload();
+        }, 9000); // Recargar cada 25 segundos
 
         return () => clearInterval(intervalId);
     }, []);
 
+    if (loading) {
+        return (
+            <div className="spinner-container">
+                <div className="spinner"></div>
+                <p>Cargando...</p>
+            </div>
+        );
+    }
+
     return (
         <div className="enfermeriapage">
-            <Link to="/user" className="back-button">Regresar</Link>
-            {refreshing ? (
-                <div className="spinner-container">
-                    <div className="spinner"></div>
-                </div>
-            ) : (
-                <>
-                    <div className="text-content">
-                        <h1>{enfermeria ? enfermeria.nombre : 'Enfermería'}</h1>
-                        <p>Capacidad Máxima: {enfermeria ? enfermeria.capacidadMaxima : 'Cargando...'}</p>
-                        <ul>
-                            {enfermeria && enfermeria.dinosaurios ? (
-                                enfermeria.dinosaurios.map(dino => (
-                                    <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>
-                                ))
-                            ) : (
-                                <td colSpan="5"></td>
-                            )}
-                        </ul>
-                    </div>
-                    <div className="table-container">
-                        <table>
-                            <tbody>
-                            {enfermeria && enfermeria.tablero ? (
-                                enfermeria.tablero.map((fila, indexFila) => (
-                                    <tr key={indexFila}>
-                                        {fila.map((celda, indexCelda) => (
-                                            <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
-                                        ))}
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan="5">Cargando...</td>
-                                </tr>
-                            )}
-                            </tbody>
-                        </table>
-                    </div>
-                </>
-            )}
+            <Link to="/user" className="back-button">Regresar</Link> {/* Botón de regreso */}
+            <div className="text-content">
+                <h1>{enfermeria.nombre}</h1>
+                <p>Capacidad Máxima: {enfermeria.capacidadMaxima}</p>
+                <ul>
+                    {enfermeria.dinosaurios && enfermeria.dinosaurios.map(dino => (
+                        <li key={dino.id}>{dino.nombre} - Edad: {dino.edad}</li>
+                    ))}
+                </ul>
+            </div>
+            <div className="table-container">
+                <table>
+                    <tbody>
+                    {enfermeria.tablero && enfermeria.tablero.map((fila, indexFila) => (
+                        <tr key={indexFila}>
+                            {fila.map((celda, indexCelda) => (
+                                <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
+                            ))}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

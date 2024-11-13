@@ -7,15 +7,14 @@ import '../styles/isla.css';
 function IslaPage() {
     const { id } = useParams();
     const [isla, setIsla] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [refreshing, setRefreshing] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const fetchData = () => {
         setLoading(true);
         getIsla(id)
             .then(response => {
                 setIsla(response.data);
-                setLoading(false);
+                setTimeout(() => setLoading(false), 2000); // Spinner effect lasts 2 seconds
             })
             .catch(error => {
                 console.error('Error al obtener la isla:', error);
@@ -26,42 +25,35 @@ function IslaPage() {
     useEffect(() => {
         fetchData();
         const intervalId = setInterval(() => {
-            setRefreshing(true);
-            setTimeout(() => {
-                fetchData();
-                setRefreshing(false);
-            }, 2000);
-        }, 9000); // Refresh every 9 seconds
+            window.location.reload();
+        }, 9000); // Recargar cada 25 segundos
 
         return () => clearInterval(intervalId);
     }, [id]);
 
+    if (loading) {
+        return (
+            <div className="spinner-container">
+                <div className="spinner"></div>
+                <p>Cargando el tablero...</p>
+            </div>
+        );
+    }
+
     return (
         <div className="islapage">
-            <Link to="/user" className="back-button">Regresar</Link>
-            {refreshing ? (
-                <div className="spinner-container">
-                    <div className="spinner"></div>
-                </div>
-            ) : (
-                <table>
-                    <tbody>
-                    {isla && isla.tablero ? (
-                        isla.tablero.map((fila, indexFila) => (
-                            <tr key={indexFila}>
-                                {fila.map((celda, indexCelda) => (
-                                    <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
-                                ))}
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="5"></td>
-                        </tr>
-                    )}
-                    </tbody>
-                </table>
-            )}
+            <Link to="/user" className="back-button">Regresar</Link> {/* Botón de regreso */}
+            <table>
+                <tbody>
+                {isla.tablero && isla.tablero.map((fila, indexFila) => (
+                    <tr key={indexFila}>
+                        {fila.map((celda, indexCelda) => (
+                            <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
+                        ))}
+                    </tr>
+                ))}
+                </tbody>
+            </table>
         </div>
     );
 }
