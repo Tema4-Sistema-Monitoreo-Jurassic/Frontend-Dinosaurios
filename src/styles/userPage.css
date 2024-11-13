@@ -78,6 +78,19 @@ color: #d32f2f}
     font-weight: bold;
 }
 
+.userpage h1, .userpage p {
+    color: #b71c1c; /* Color dorado para h1 y rojo para p */
+    background-color: #f0c040; /* Fondo oscuro */
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 2px solid #d32f2f; /* Borde rojo */
+    border-radius: 8px; /* Bordes redondeados */
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
 .userpage ul li a:hover {
     background-color: #b71c1c; /* Rojo oscuro al pasar el ratón */
     color: #f0c040; /* Letra dorada en hover */
