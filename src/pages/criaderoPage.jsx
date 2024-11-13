@@ -7,48 +7,55 @@ import '../styles/isla.css';
 function CriaderoPage() {
     const { id } = useParams();
     const [criadero, setCriadero] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loadingData, setLoadingData] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
+
+    const fetchData = () => {
+        setLoadingData(true);
+        getIsla(id)
+            .then(response => {
+                setCriadero(response.data);
+                setLoadingData(false);
+            })
+            .catch(error => {
+                console.error('Error al obtener el criadero:', error);
+                setLoadingData(false);
+            });
+    };
 
     useEffect(() => {
-        const fetchData = () => {
-            setLoading(true);
-            getIsla(id)
-                .then(response => {
-                    setCriadero(response.data);
-                    setLoading(false);
-                })
-                .catch(error => {
-                    console.error('Error al obtener el criadero:', error);
-                    setLoading(false);
-                });
-        };
-
         fetchData();
-    }, [id]);
+        const intervalId = setInterval(() => {
+            setRefreshing(true);
+            setTimeout(() => {
+                fetchData();
+                setRefreshing(false);
+            }, 2000);
+        }, 9000); // Refresh every 25 seconds
 
-    if (loading) {
-        return (
-            <div className="spinner-container">
-                <div className="spinner"></div>
-                <p>Cargando el tablero...</p>
-            </div>
-        );
-    }
+        return () => clearInterval(intervalId);
+    }, [id]);
 
     return (
         <div className="criaderopage">
-            <Link to="/user" className="back-button">Regresar</Link> {/* Botón de regreso */}
-            <table>
-                <tbody>
-                {criadero.tablero && criadero.tablero.map((fila, indexFila) => (
-                    <tr key={indexFila}>
-                        {fila.map((celda, indexCelda) => (
-                            <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
-                        ))}
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <Link to="/user" className="back-button">Regresar</Link>
+            {refreshing ? (
+                <div className="spinner-container">
+                    <div className="spinner"></div>
+                </div>
+            ) : (
+                <table>
+                    <tbody>
+                    {criadero && criadero.tablero && criadero.tablero.map((fila, indexFila) => (
+                        <tr key={indexFila}>
+                            {fila.map((celda, indexCelda) => (
+                                <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
+                            ))}
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
 }
