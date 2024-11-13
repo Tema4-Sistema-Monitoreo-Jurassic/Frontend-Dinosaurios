@@ -9,15 +9,16 @@ import IslaPage from './pages/islaPage';
 import CriaderoPage from './pages/criaderoPage';
 import EnfermeriaPage from './pages/enfermeriaPage';
 import LoginPage from "./pages/loginPage";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<LoginPage />} />
-                <Route path="/user" element={<UserPage />} />
-                <Route path="/admin" element={<AdminPage />} />
-                <Route path="/paleontologist" element={<PaleontologistPage />} />
+                <Route path="/user" element={<ProtectedRoute> requiredRole="user"><UserPage /> </ProtectedRoute>} />
+                <Route path="/admin" element={<ProtectedRoute> requiredRole="admin"><AdminPage /> </ProtectedRoute>} />
+                <Route path="/paleontologist" element={<ProtectedRoute> requiredRole="paleontologist"><PaleontologistPage /> </ProtectedRoute>} />
                 <Route path="/isla/:id" element={<IslaPage />} />
                 <Route path="/criadero/:id" element={<CriaderoPage />} />
                 <Route path="/enfermeria" element={<EnfermeriaPage />} />
