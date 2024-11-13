@@ -8,6 +8,7 @@ function IslaPage() {
     const { id } = useParams();
     const [isla, setIsla] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
 
     const fetchData = () => {
         setLoading(true);
@@ -25,11 +26,12 @@ function IslaPage() {
     useEffect(() => {
         fetchData();
         const intervalId = setInterval(() => {
-            setLoading(true);
+            setRefreshing(true);
             setTimeout(() => {
                 fetchData();
+                setRefreshing(false);
             }, 2000);
-        }, 9000); // Refresh every 25 seconds
+        }, 9000); // Refresh every 9 seconds
 
         return () => clearInterval(intervalId);
     }, [id]);
@@ -37,20 +39,26 @@ function IslaPage() {
     return (
         <div className="islapage">
             <Link to="/user" className="back-button">Regresar</Link>
-            {loading ? (
+            {refreshing ? (
                 <div className="spinner-container">
                     <div className="spinner"></div>
                 </div>
             ) : (
                 <table>
                     <tbody>
-                    {isla && isla.tablero && isla.tablero.map((fila, indexFila) => (
-                        <tr key={indexFila}>
-                            {fila.map((celda, indexCelda) => (
-                                <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
-                            ))}
+                    {isla && isla.tablero ? (
+                        isla.tablero.map((fila, indexFila) => (
+                            <tr key={indexFila}>
+                                {fila.map((celda, indexCelda) => (
+                                    <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
+                                ))}
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="5"></td>
                         </tr>
-                    ))}
+                    )}
                     </tbody>
                 </table>
             )}

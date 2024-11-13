@@ -7,19 +7,19 @@ import '../styles/isla.css';
 function CriaderoPage() {
     const { id } = useParams();
     const [criadero, setCriadero] = useState(null);
-    const [loadingData, setLoadingData] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
 
     const fetchData = () => {
-        setLoadingData(true);
+        setLoading(true);
         getIsla(id)
             .then(response => {
                 setCriadero(response.data);
-                setLoadingData(false);
+                setLoading(false);
             })
             .catch(error => {
                 console.error('Error al obtener el criadero:', error);
-                setLoadingData(false);
+                setLoading(false);
             });
     };
 
@@ -31,7 +31,7 @@ function CriaderoPage() {
                 fetchData();
                 setRefreshing(false);
             }, 2000);
-        }, 9000); // Refresh every 25 seconds
+        }, 9000); // Refresh every 9 seconds
 
         return () => clearInterval(intervalId);
     }, [id]);
@@ -46,13 +46,19 @@ function CriaderoPage() {
             ) : (
                 <table>
                     <tbody>
-                    {criadero && criadero.tablero && criadero.tablero.map((fila, indexFila) => (
-                        <tr key={indexFila}>
-                            {fila.map((celda, indexCelda) => (
-                                <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
-                            ))}
+                    {criadero && criadero.tablero ? (
+                        criadero.tablero.map((fila, indexFila) => (
+                            <tr key={indexFila}>
+                                {fila.map((celda, indexCelda) => (
+                                    <td key={indexCelda} className={celda === 1 ? 'occupied' : ''}></td>
+                                ))}
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="5"></td>
                         </tr>
-                    ))}
+                    )}
                     </tbody>
                 </table>
             )}
