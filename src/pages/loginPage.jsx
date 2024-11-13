@@ -54,7 +54,7 @@ function LoginPage() {
                 <h1>Iniciar Sesión</h1>
                 <form className="login-form" onSubmit={handleSubmit}>
                     <div>
-                        <label>Nombre de Usuario o Correo:</label>
+                        <label>Nombre de Usuario:</label>
                         <input
                             type="text"
                             value={nombreOrCorreo}

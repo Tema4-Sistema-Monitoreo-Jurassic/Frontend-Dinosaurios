@@ -16,9 +16,9 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<LoginPage />} />
-                <Route path="/user" element={<ProtectedRoute> requiredRole="user"><UserPage /> </ProtectedRoute>} />
-                <Route path="/admin" element={<ProtectedRoute> requiredRole="admin"><AdminPage /> </ProtectedRoute>} />
-                <Route path="/paleontologist" element={<ProtectedRoute> requiredRole="paleontologist"><PaleontologistPage /> </ProtectedRoute>} />
+                <Route path="/user" element={<ProtectedRoute requiredRole="user"><UserPage /> </ProtectedRoute>} />
+                <Route path="/admin" element={<ProtectedRoute requiredRole="admin"><AdminPage /> </ProtectedRoute>} />
+                <Route path="/paleontologist" element={<ProtectedRoute requiredRole="paleontologist"><PaleontologistPage /> </ProtectedRoute>} />
                 <Route path="/isla/:id" element={<IslaPage />} />
                 <Route path="/criadero/:id" element={<CriaderoPage />} />
                 <Route path="/enfermeria" element={<EnfermeriaPage />} />
