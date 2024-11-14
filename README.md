@@ -19,6 +19,14 @@ BACKEND: https://github.com/Tema4-Sistema-Monitoreo-Jurassic/Backend-Sistema-Mon
 
 ---
 
+# CUENTAS PARA TESTEO:
+
+-USUARIO --> Mail**[usuario@gmail.com]** - Nombre**[Usuario]** - Contraseña**[a12345_679]**
+-ADMINISTRADOR --> Mail**[admin@gmail.com]** - Nombre**[Administrador]** - Contraseña**[a12345_67]**
+-PALEONTOLOGO --> Mail**[paleontologist@gmail.com]** - Nombre**[Paleontologo]** - Contraseña**[a12345_678]**
+
+---
+
 # Gestión Dinosaurios Frontend
 
 Este proyecto consiste en el desarrollo del frontend de una aplicación **[Spring-WebFlux que se aprovecha de una BBDD reactiva concretamente MongoDB]** y solapa la coordinacion y deteccion de sucesos mediante **[RabbitMQ]**. Partimos de un loggin que vifurca las diferentes actividades en base al rol con el que inicias sesion(usuario, admin o paleontologo), sesion que puedes crear en una sección de registro.
