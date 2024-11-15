@@ -124,7 +124,7 @@ Además de los endpoints específicos, el sistema también integra servicios tra
 
 ### -Frontend
 
-El frontend, desarrollado con React, consume la API REST para obtener los datos de estado y distribución de varios hechizos, usuarios y eventos mágicos que se han creado, asignado y simulado transversalmente, reactivamente además de monitorizado gracias a un conjunto de prácticas de programación orientada al control y monitorización de flujo, reactividad  y aspectos. Estas prácticas se aplican antes, durante y después en los diferentes servicios según convenga, para la correcta generación, visualización y gestión de dinosuarios "vivoss e interactivos" por islas por pantalla, entre otras funcionalidades.
+El frontend, desarrollado con React, consume la API REST para obtener los datos de estado y distribución de varios dinosaurios, islas y eventos mágicos que se han creado, asignado y simulado transversalmente, reactivamente además de monitorizado gracias a un conjunto de prácticas de programación orientada al control y monitorización de flujo, reactividad  y aspectos. Estas prácticas se aplican antes, durante y después en los diferentes servicios según convenga, para la correcta generación, visualización y gestión de dinosuarios "vivoss e interactivos" por islas por pantalla, entre otras funcionalidades.
 
 La aplicación proporciona una interfaz de usuario con múltiples pantallas para disfrutar de diversas funcionalidades, incluyendo el registro, loggin, progreso y visualización (mediante animaciones-ecosistemas) de distintos dinosaurios, la gestión de sus datos basada en los datos de los eventos que las proporcionan sus sensores, el registro de usuarios (creación de cuentas) y mucho más.
 
